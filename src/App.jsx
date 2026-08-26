@@ -17,12 +17,20 @@ import GuidesPage from './pages/GuidesPage';
 import GuideDetailPage from './pages/GuideDetailPage';
 
 export default function App() {
-  const [splashDone, setSplashDone] = useState(false);
+  // Show splash only if not already seen this session
+  const [splashDone, setSplashDone] = useState(
+    () => sessionStorage.getItem('splashShown') === 'true'
+  );
+
+  function handleSplashDone() {
+    sessionStorage.setItem('splashShown', 'true');
+    setSplashDone(true);
+  }
 
   return (
     <StorefrontDataProvider>
       {/* Splash screen renders on top while app loads in background */}
-      {!splashDone && <SplashScreen onDone={() => setSplashDone(true)} />}
+      {!splashDone && <SplashScreen onDone={handleSplashDone} />}
 
       <BrowserRouter>
         <SEO />
