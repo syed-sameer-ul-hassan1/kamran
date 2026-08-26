@@ -103,13 +103,13 @@ export default function ProductCard({ product }) {
           <CardVisual type={product.visual || 'pashmina'} />
         )}
         <span className="card-visual-tag">{product.tag}</span>
-        {product.dimensions && (
-          <span className="card-visual-dim">{product.dimensions}</span>
-        )}
         {imageList.length > 1 && (
-          <span style={{ position: 'absolute', bottom: '8px', right: '8px', background: 'rgba(31,25,24,0.85)', color: '#fff', fontSize: '0.68rem', padding: '2px 6px', borderRadius: '4px', fontWeight: 600 }}>
+          <span style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(31,25,24,0.85)', color: '#fff', fontSize: '0.68rem', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, backdropFilter: 'blur(4px)', letterSpacing: '0.04em', zIndex: 2 }}>
             {imageList.length} Photos
           </span>
+        )}
+        {product.dimensions && (
+          <span className="card-visual-dim">{product.dimensions}</span>
         )}
       </Link>
 

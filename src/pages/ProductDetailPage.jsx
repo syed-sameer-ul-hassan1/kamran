@@ -85,6 +85,11 @@ export default function ProductDetailPage() {
                   <CardVisual type={product.visual || 'pashmina'} />
                 </div>
               )}
+              {imageList.length > 1 && (
+                <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(31,25,24,0.85)', color: '#fff', fontSize: '0.74rem', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, backdropFilter: 'blur(4px)', letterSpacing: '0.04em', zIndex: 2 }}>
+                  {selectedImageIndex + 1} / {imageList.length}
+                </div>
+              )}
               {product.inStock === false && (
                 <div className="product-badge-stock-out">Out of Stock</div>
               )}
