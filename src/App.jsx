@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StorefrontDataProvider } from './context/StorefrontDataContext';
 import { BotehSymbol } from './components/Icons';
@@ -5,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import SEO from './components/SEO';
+import SplashScreen from './components/SplashScreen';
 
 import HomePage from './pages/HomePage';
 import CollectionPage from './pages/CollectionPage';
@@ -15,8 +17,13 @@ import GuidesPage from './pages/GuidesPage';
 import GuideDetailPage from './pages/GuideDetailPage';
 
 export default function App() {
+  const [splashDone, setSplashDone] = useState(false);
+
   return (
     <StorefrontDataProvider>
+      {/* Splash screen renders on top while app loads in background */}
+      {!splashDone && <SplashScreen onDone={() => setSplashDone(true)} />}
+
       <BrowserRouter>
         <SEO />
         <BotehSymbol />
