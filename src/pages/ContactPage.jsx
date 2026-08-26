@@ -6,13 +6,18 @@ import { CardVisual } from '../components/ProductCard';
 export default function ContactPage() {
   const { products, settings, whatsappLink, submitInquiry } = useStorefrontData();
   const [activeTab, setActiveTab] = useState('video-preview');
-  const [selectedProduct, setSelectedProduct] = useState(products[0] || {});
+
+  const featuredProducts = (products && products.length > 0 ? products : []).filter((p) => Boolean(p.featured));
+  const [selectedProduct, setSelectedProduct] = useState(
+    featuredProducts[0] || (products && products[0]) || {}
+  );
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     city: '',
     notes: '',
   });
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleShawlSelect = (product) => {
@@ -21,6 +26,7 @@ export default function ContactPage() {
 
   const handleInquirySubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
     const modeText =
       activeTab === 'video-preview'
         ? 'Live Video Preview & Fabric Photos'
@@ -30,16 +36,23 @@ export default function ContactPage() {
 
     const message = `*Kamran Shawls Boutique Inquiry*\n\n• *Service Requested:* ${modeText}\n• *Selected Piece:* ${selectedProduct?.name || 'General Inquiry'} (${selectedProduct?.price || ''})\n• *Client Name:* ${formData.name}\n• *Phone:* ${formData.phone}\n• *City / Location:* ${formData.city}\n• *Notes:* ${formData.notes || 'Please share available shades, close-up texture photos, and drape videos.'}`;
 
-    submitInquiry({
-      name: formData.name,
-      phone: formData.phone,
-      city: formData.city,
-      shawl_name: selectedProduct?.name || 'General Inquiry',
-      message: `${modeText} — ${formData.notes || ''}`
-    });
-
-    setSubmitted(true);
-    window.open(`https://wa.me/923002121224?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    try {
+      if (submitInquiry) {
+        await submitInquiry({
+          name: formData.name,
+          phone: formData.phone,
+          city: formData.city,
+          shawl_name: selectedProduct?.name || 'General Inquiry',
+          message: `${modeText} — ${formData.notes || ''}`
+        });
+      }
+    } catch (err) {
+      console.error('Inquiry error:', err);
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+      window.open(`https://wa.me/923002121224?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const scrollToSuite = () => {
@@ -121,7 +134,6 @@ export default function ContactPage() {
               className={`atelier-tab-btn ${activeTab === 'video-preview' ? 'active' : ''}`}
               onClick={() => setActiveTab('video-preview')}
             >
-              <SparklesIcon />
               <span>01. Live Video & Photos</span>
             </button>
 
@@ -130,7 +142,6 @@ export default function ContactPage() {
               className={`atelier-tab-btn ${activeTab === 'bridal-bespoke' ? 'active' : ''}`}
               onClick={() => setActiveTab('bridal-bespoke')}
             >
-              <ShieldCheckIcon />
               <span>02. Bespoke Bridal & Gifting</span>
             </button>
 
@@ -139,7 +150,6 @@ export default function ContactPage() {
               className={`atelier-tab-btn ${activeTab === 'boutique-visit' ? 'active' : ''}`}
               onClick={() => setActiveTab('boutique-visit')}
             >
-              <LocationIcon />
               <span>03. Nathia Gali Store Visit</span>
             </button>
           </div>
@@ -159,11 +169,11 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {products && products.length > 0 && (
+              {featuredProducts && featuredProducts.length > 0 && (
                 <div className="weave-picker-section">
-                  <label className="picker-label">Select Shawl / Weave Canvas:</label>
+                  <label className="picker-label">Select Featured Shawl / Canvas:</label>
                   <div className="weave-picker-grid">
-                    {products.slice(0, 4).map((p) => (
+                    {featuredProducts.map((p) => (
                       <div
                         key={p.id}
                         className={`weave-chip ${selectedProduct?.id === p.id ? 'active' : ''}`}
@@ -265,52 +275,93 @@ export default function ContactPage() {
 
             {/* Right Column: Atelier Passport */}
             <div className="atelier-passport-panel">
-              <div className="passport-header">
-                <span className="pass-eyebrow">Boutique Coordinates</span>
-                <h3>Visit Us in Nathia Gali</h3>
-                <p>Experience the warmth and tactile feel of genuine Himalayan weaves in person.</p>
-              </div>
-
-              <div className="passport-details-list">
-                <div className="pass-item">
-                  <div className="pass-icon">📍</div>
-                  <div className="pass-content">
-                    <strong>Boutique Address</strong>
-                    <span>{settings.address || 'Main Bazaar, Nathia Gali, District Abbottabad, KPK, Pakistan'}</span>
-                  </div>
+              <div className="passport-inner">
+                <div className="passport-header">
+                  <span className="eyebrow on-dark">Boutique Coordinates</span>
+                  <h3>Kamran Shawls Nathia Gali</h3>
+                  <p className="passport-desc">
+                    Historic flagship salon in the pine hills of Khyber Pakhtunkhwa. 
+                    Serving patrons and collectors for over three decades.
+                  </p>
                 </div>
 
-                <div className="pass-item">
-                  <div className="pass-icon">📞</div>
-                  <div className="pass-content">
-                    <strong>Direct Store Lines</strong>
-                    <div className="pass-phone-row">
-                      <a href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>{settings.phonePrimary || '+92 300 2121224'}</a>
-                      <span className="pass-sep">•</span>
-                      <a href={`tel:${(settings.phoneSecondary || '+923499134377').replace(/\s/g, '')}`}>{settings.phoneSecondary || '+92 349 9134377'}</a>
+                <div className="passport-items">
+                  <div className="pass-item">
+                    <div className="pass-icon"><LocationIcon /></div>
+                    <div className="pass-text">
+                      <span className="pass-lbl">Boutique Address</span>
+                      <span className="pass-val">{settings.address || 'Main Bazaar, Nathia Gali, District Abbottabad, KPK, Pakistan'}</span>
+                    </div>
+                  </div>
+
+                  <div className="pass-item">
+                    <div className="pass-icon"><PhoneIcon /></div>
+                    <div className="pass-text">
+                      <span className="pass-lbl">Direct Store Lines</span>
+                      <div className="pass-phone-row">
+                        <a href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>{settings.phonePrimary || '+92 300 2121224'}</a>
+                        <span className="pass-sep">•</span>
+                        <a href={`tel:${(settings.phoneSecondary || '+923499134377').replace(/\s/g, '')}`}>{settings.phoneSecondary || '+92 349 9134377'}</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pass-item">
+                    <div className="pass-icon"><MailIcon /></div>
+                    <div className="pass-text">
+                      <span className="pass-lbl">Email Inquiries</span>
+                      <a href={`mailto:${settings.email || 'hello@kamranshawls.com.pk'}`}>{settings.email || 'hello@kamranshawls.com.pk'}</a>
                     </div>
                   </div>
                 </div>
 
-                <div className="pass-item">
-                  <div className="pass-icon">🕒</div>
-                  <div className="pass-content">
-                    <strong>Visiting Hours</strong>
-                    <span>Summer: {settings.timingsSummer || '9:00 AM – 10:00 PM (Daily)'}</span>
-                    <span>Winter: {settings.timingsWinter || '10:00 AM – 8:00 PM (Daily)'}</span>
+                <div className="passport-socials">
+                  <span className="pass-lbl">Official Live Broadcasts</span>
+                  <div className="pass-social-btns">
+                    <a
+                      href={settings.tiktokUrl || "https://tiktok.com/@kamranshawls"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pass-social-btn"
+                    >
+                      <TikTokIcon />
+                      <span>TikTok @kamranshawls</span>
+                    </a>
+
+                    <a
+                      href={settings.instagramUrl || "https://instagram.com/kamranshawls"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pass-social-btn"
+                    >
+                      <InstagramIcon />
+                      <span>Instagram @kamranshawls</span>
+                    </a>
                   </div>
                 </div>
-              </div>
 
-              <div className="passport-action">
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-full"
-                >
-                  Message Boutique on WhatsApp →
-                </a>
+                <div className="passport-timings">
+                  <div className="pt-title">Visiting Hours</div>
+                  <div className="pt-row">
+                    <span>Summer:</span>
+                    <strong>{settings.timingsSummer || '9:00 AM – 10:00 PM (Daily)'}</strong>
+                  </div>
+                  <div className="pt-row">
+                    <span>Winter:</span>
+                    <strong>{settings.timingsWinter || '10:00 AM – 8:00 PM (Daily)'}</strong>
+                  </div>
+                </div>
+
+                <div className="passport-action" style={{ marginTop: '24px' }}>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-full"
+                  >
+                    Message Boutique on WhatsApp →
+                  </a>
+                </div>
               </div>
             </div>
           </div>

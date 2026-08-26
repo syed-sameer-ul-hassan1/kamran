@@ -2810,15 +2810,24 @@ header.site-nav.light-page-nav .burger {
 }
 
 .chip-visual-mini {
-  aspect-ratio: 4/3;
-  border-radius: 3px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
   overflow: hidden;
   background: #EAE0D2;
+}
+
+.chip-visual-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .chip-visual-mini svg {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   display: block;
 }
 
