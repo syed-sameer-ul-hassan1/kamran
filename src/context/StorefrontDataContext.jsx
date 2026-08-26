@@ -51,25 +51,31 @@ export function StorefrontDataProvider({ children }) {
         supabase.from('faqs').select('*').order('sort_order', { ascending: true })
       ]);
 
-      if (productsRes.data && productsRes.data.length > 0) {
-        setProducts(productsRes.data.map((p) => ({
-          id: p.id,
-          name: p.name,
-          category: p.category,
-          tag: p.tag,
-          desc: p.desc,
-          price: p.price,
-          dimensions: p.dimensions,
-          weight: p.weight,
-          origin: p.origin,
-          weave: p.weave,
-          warmth: p.warmth,
-          enquiryText: p.enquiry_text,
-          visual: p.visual || 'pashmina',
-          imageUrl: p.image_url || '',
-          inStock: p.in_stock !== false,
-          featured: Boolean(p.featured)
-        })));
+      if (productsRes.data) {
+        setProducts(productsRes.data.map((p) => {
+          const imagesList = p.images && Array.isArray(p.images) && p.images.length > 0
+            ? p.images
+            : (p.image_url ? [p.image_url] : []);
+          return {
+            id: p.id,
+            name: p.name,
+            category: p.category,
+            tag: p.tag,
+            desc: p.desc,
+            price: p.price,
+            dimensions: p.dimensions,
+            weight: p.weight,
+            origin: p.origin,
+            weave: p.weave,
+            warmth: p.warmth,
+            enquiryText: p.enquiry_text,
+            visual: p.visual || 'pashmina',
+            imageUrl: imagesList[0] || p.image_url || '',
+            images: imagesList,
+            inStock: p.in_stock !== false,
+            featured: Boolean(p.featured)
+          };
+        }));
       }
 
       if (settingsRes.data) {

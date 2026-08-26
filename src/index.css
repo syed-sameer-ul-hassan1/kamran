@@ -3733,3 +3733,362 @@ footer.luxury-footer {
   }
 }
 
+/* ==========================================================================
+   Product Detail Page (Clean, Professional, Alibaba-Style Specs & 5-Img Gallery)
+   ========================================================================== */
+
+.product-detail-page {
+  padding-top: 80px;
+  background: var(--cream-pure);
+  min-height: 90vh;
+}
+
+.product-breadcrumb-wrap {
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.breadcrumb-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-nav a:hover {
+  color: var(--oxblood);
+}
+
+.bc-sep {
+  color: var(--line);
+  font-size: 0.76rem;
+}
+
+.bc-current {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.product-main-container {
+  padding-top: 36px;
+  padding-bottom: 70px;
+}
+
+.product-view-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .product-view-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .product-view-grid {
+    grid-template-columns: 520px 1fr;
+    gap: 60px;
+  }
+}
+
+/* Product Gallery (Left Column) */
+.product-gallery-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky;
+  top: 90px;
+}
+
+.product-main-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #EAE0D2;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.product-hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-hero-photo:hover {
+  transform: scale(1.03);
+}
+
+.product-hero-fallback {
+  width: 100%;
+  height: 100%;
+}
+
+.product-hero-fallback svg {
+  width: 100%;
+  height: 100%;
+}
+
+.product-badge-stock-out {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--oxblood);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.product-thumbs-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+
+.product-thumbs-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.product-thumb-btn {
+  flex: 0 0 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 2px solid var(--line);
+  background: #EAE0D2;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.product-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-thumb-btn.active {
+  border-color: var(--oxblood);
+  box-shadow: 0 0 0 2px var(--oxblood-glow);
+}
+
+.product-thumb-btn:hover:not(.active) {
+  border-color: var(--gold);
+}
+
+/* Product Info & Specs (Right Column) */
+.product-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-header-block {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.product-eyebrow-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.product-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+
+.product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.product-price-val {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--oxblood);
+}
+
+.product-stock-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+
+.product-stock-tag.in-stock {
+  background: rgba(46, 125, 50, 0.12);
+  color: #2E7D32;
+  border: 1px solid rgba(46, 125, 50, 0.25);
+}
+
+.product-stock-tag.out-of-stock {
+  background: rgba(123, 36, 38, 0.1);
+  color: var(--oxblood);
+  border: 1px solid var(--line);
+}
+
+.product-summary-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* CTAs */
+.product-actions-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 500px) {
+  .product-actions-block {
+    flex-direction: row;
+  }
+}
+
+.btn-product-order {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.btn-product-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  font-size: 0.92rem;
+}
+
+/* Specifications Table (Alibaba Clean Spec Grid) */
+.product-specs-section {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.specs-section-title {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.product-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-specs-table th,
+.product-specs-table td {
+  padding: 10px 12px;
+  font-size: 0.86rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(36, 29, 27, 0.07);
+}
+
+.product-specs-table tr:last-child th,
+.product-specs-table tr:last-child td {
+  border-bottom: none;
+}
+
+.product-specs-table th {
+  width: 38%;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.product-specs-table td {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* Guarantees */
+.product-guarantees-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 500px) {
+  .product-guarantees-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.guarantee-item strong {
+  display: block;
+  font-size: 0.84rem;
+  color: var(--text-dark);
+}
+
+.guarantee-item span {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Related Pieces */
+.product-related-section {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+

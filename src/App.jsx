@@ -9,6 +9,7 @@ import SEO from './components/SEO';
 
 import HomePage from './pages/HomePage';
 import CollectionPage from './pages/CollectionPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 import CraftPage from './pages/CraftPage';
 import ContactPage from './pages/ContactPage';
 import GuidesPage from './pages/GuidesPage';
@@ -28,6 +29,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/collection" element={<CollectionPage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/collection/:id" element={<ProductDetailPage />} />
             <Route path="/craft" element={<CraftPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/guides" element={<GuidesPage />} />

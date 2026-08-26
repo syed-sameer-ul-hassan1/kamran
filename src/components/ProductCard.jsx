@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function CardVisual({ type }) {
   switch (type) {
     case 'pashmina':
@@ -79,13 +81,19 @@ export function CardVisual({ type }) {
 
 export default function ProductCard({ product }) {
   const enquiryUrl = `https://wa.me/923002121224?text=Hi%2C%20I%27m%20interested%20in%20the%20${product.enquiryText || encodeURIComponent(product.name)}%20(${encodeURIComponent(product.price)}).`;
+  const productLink = `/product/${product.id}`;
+
+  const imageList = Array.isArray(product.images) && product.images.length > 0
+    ? product.images
+    : (product.imageUrl ? [product.imageUrl] : []);
+  const coverImage = imageList[0];
 
   return (
     <article className="card card-rich">
-      <div className="card-visual">
-        {product.imageUrl ? (
+      <Link to={productLink} className="card-visual" style={{ display: 'block', textDecoration: 'none' }}>
+        {coverImage ? (
           <img
-            src={product.imageUrl}
+            src={coverImage}
             alt={product.name}
             className="card-photo-img"
             loading="lazy"
@@ -98,11 +106,20 @@ export default function ProductCard({ product }) {
         {product.dimensions && (
           <span className="card-visual-dim">{product.dimensions}</span>
         )}
-      </div>
+        {imageList.length > 1 && (
+          <span style={{ position: 'absolute', bottom: '8px', right: '8px', background: 'rgba(31,25,24,0.85)', color: '#fff', fontSize: '0.68rem', padding: '2px 6px', borderRadius: '4px', fontWeight: 600 }}>
+            {imageList.length} Photos
+          </span>
+        )}
+      </Link>
 
       <div className="card-body">
         <div className="card-header-row">
-          <h3>{product.name}</h3>
+          <h3>
+            <Link to={productLink} style={{ color: 'inherit', textDecoration: 'none' }}>
+              {product.name}
+            </Link>
+          </h3>
         </div>
 
         <p className="card-desc">{product.desc}</p>
@@ -133,14 +150,12 @@ export default function ProductCard({ product }) {
             <span className="price-label">Starting Price</span>
             <span className="price">{product.price}</span>
           </div>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={enquiryUrl}
-            className="btn btn-primary btn-sm card-enquire-btn"
+          <Link
+            to={productLink}
+            className="btn btn-secondary btn-sm card-enquire-btn"
           >
-            Enquire on WhatsApp →
-          </a>
+            View Details →
+          </Link>
         </div>
       </div>
     </article>
