@@ -41,13 +41,17 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location]);
 
+  const isLightPage = location.pathname.startsWith('/product/') || 
+                      (location.pathname.startsWith('/collection/') && location.pathname !== '/collection') ||
+                      location.pathname.startsWith('/guides/');
+
   return (
     <>
-      <header className={`site-nav${scrolled ? ' scrolled' : ''}`}>
+      <header className={`site-nav${scrolled ? ' scrolled' : ''}${isLightPage ? ' light-page-nav' : ''}`}>
         <div className="nav-inner">
           <Link className="brand" to="/">
             <img
-              src={scrolled ? '/logo-default.svg' : '/logo-dark.svg'}
+              src={(scrolled || isLightPage) ? '/logo-default.svg' : '/logo-dark.svg'}
               alt="Kamran Shawls Logo"
               className="brand-logo"
               width="32"
