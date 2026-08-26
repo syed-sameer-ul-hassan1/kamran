@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { LocationIcon, PhoneIcon, MailIcon, InstagramIcon, TikTokIcon } from './Icons';
-import { WHATSAPP_LINK, PRODUCTS } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function Footer() {
+  const { products, settings, whatsappLink } = useStorefrontData();
+
   return (
     <footer className="luxury-footer">
       <div className="wrap footer-main-grid">
@@ -15,7 +17,7 @@ export default function Footer() {
               width="36"
               height="36"
             />
-            <span>Kamran Shawls</span>
+            <span>{settings.siteName || 'Kamran Shawls'}</span>
           </Link>
 
           <p className="footer-tagline">
@@ -25,7 +27,7 @@ export default function Footer() {
 
           <div className="footer-social-pills">
             <a
-              href="https://tiktok.com/@kamranshawls"
+              href={settings.tiktokUrl || "https://tiktok.com/@kamranshawls"}
               target="_blank"
               rel="noopener noreferrer"
               className="f-social-btn"
@@ -36,7 +38,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://instagram.com/kamranshawls"
+              href={settings.instagramUrl || "https://instagram.com/kamranshawls"}
               target="_blank"
               rel="noopener noreferrer"
               className="f-social-btn"
@@ -62,7 +64,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4 className="footer-heading">Available Weaves</h4>
           <ul className="footer-links-list">
-            {PRODUCTS.slice(0, 5).map((product) => (
+            {(products || []).slice(0, 5).map((product) => (
               <li key={product.id}>
                 <Link to="/collection">{product.name}</Link>
               </li>
@@ -77,7 +79,7 @@ export default function Footer() {
             <LocationIcon />
             <div>
               <strong>Nathia Gali Shop</strong>
-              <span>Main Bazaar, Nathia Gali, KPK, Pakistan</span>
+              <span>{settings.address || 'Main Bazaar, Nathia Gali, KPK, Pakistan'}</span>
             </div>
           </div>
 
@@ -85,7 +87,7 @@ export default function Footer() {
             <PhoneIcon />
             <div>
               <strong>Phone & WhatsApp</strong>
-              <a href="tel:+923002121224">+92 300 2121224</a>
+              <a href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>{settings.phonePrimary || '+92 300 2121224'}</a>
             </div>
           </div>
 
@@ -93,7 +95,7 @@ export default function Footer() {
             <MailIcon />
             <div>
               <strong>Email</strong>
-              <a href="mailto:hello@kamranshawls.com.pk">hello@kamranshawls.com.pk</a>
+              <a href={`mailto:${settings.email || 'hello@kamranshawls.com.pk'}`}>{settings.email || 'hello@kamranshawls.com.pk'}</a>
             </div>
           </div>
 
@@ -101,7 +103,7 @@ export default function Footer() {
             className="btn btn-primary btn-sm footer-wa-btn"
             target="_blank"
             rel="noopener noreferrer"
-            href={WHATSAPP_LINK}
+            href={whatsappLink}
           >
             WhatsApp Inquiry →
           </a>

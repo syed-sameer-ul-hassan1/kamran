@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BurgerIcon } from './Icons';
-import { WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -12,6 +12,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const { whatsappLink } = useStorefrontData();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();

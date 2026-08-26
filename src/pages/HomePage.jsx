@@ -62,7 +62,7 @@ export default function HomePage() {
                 className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
                 onClick={() => setFilter('all')}
               >
-                All Featured ({PRODUCTS.length})
+                All Featured ({products.length})
               </button>
               <button
                 type="button"
@@ -88,15 +88,36 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mobile-scroll-hint">
-            <span>Swipe to explore weaves →</span>
-          </div>
+          {filteredProducts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '50px 20px', background: 'var(--cream)', borderRadius: 'var(--radius)', border: '1px solid var(--line)', margin: '20px 0' }}>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--text-dark)', marginBottom: '8px' }}>
+                Seasonal Weaves Being Curated
+              </h3>
+              <p style={{ color: 'var(--text-muted)', maxWidth: '500px', margin: '0 auto 20px', fontSize: '0.92rem' }}>
+                Our master artisans are currently finishing new heirloom weaves in Nathia Gali. Contact our curator directly on WhatsApp for real-time boutique stock.
+              </p>
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-large"
+              >
+                Enquire Available Stock on WhatsApp →
+              </a>
+            </div>
+          ) : (
+            <>
+              <div className="mobile-scroll-hint">
+                <span>Swipe to explore weaves →</span>
+              </div>
 
-          <div className="grid home-collection-grid">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+              <div className="grid home-collection-grid">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </>
+          )}
 
           <div className="collection-cta-wrap">
             <Link to="/collection" className="btn btn-primary btn-large">
@@ -213,64 +234,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="testimonials-section">
-        <div className="wrap">
-          <div className="section-head text-center" style={{ margin: '0 auto 36px', textAlign: 'center', maxWidth: '650px' }}>
-            <span className="eyebrow">Patron Testimonials</span>
-            <h2>Worn by discerning patrons across Pakistan</h2>
-            <p>Read what our clients from Islamabad, Lahore, Karachi, and abroad say about our weaves.</p>
-          </div>
-
-          <div className="mobile-scroll-hint">
-            <span>Swipe to read reviews →</span>
-          </div>
-
-          <div className="testimonials-grid">
-            {testimonials.map((t, idx) => (
-              <div className="testimonial-card" key={t.id || idx}>
-                <div className="t-rating">{'★'.repeat(t.rating || 5)}</div>
-                <p className="t-comment">&ldquo;{t.comment}&rdquo;</p>
-                <div className="t-author">
-                  <strong>{t.name}</strong>
-                  <span className="t-city">{t.city} • <span className="t-shawl">{t.shawl}</span></span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="faqs-section">
-        <div className="wrap">
-          <div className="section-head" style={{ marginBottom: '32px' }}>
-            <div>
-              <span className="eyebrow">Client Support</span>
-              <h2>Frequently asked questions</h2>
+      {testimonials.length > 0 && (
+        <section className="testimonials-section">
+          <div className="wrap">
+            <div className="section-head text-center" style={{ margin: '0 auto 36px', textAlign: 'center', maxWidth: '650px' }}>
+              <span className="eyebrow">Patron Testimonials</span>
+              <h2>Worn by discerning patrons across Pakistan</h2>
+              <p>Read what our clients from Islamabad, Lahore, Karachi, and abroad say about our weaves.</p>
             </div>
-            <p>Everything you need to know about our ordering process, purity testing, and care guidelines.</p>
-          </div>
 
-          <div className="faqs-accordion">
-            {faqs.map((faq, idx) => (
-              <div
-                className={`faq-item ${openFaq === idx ? 'open' : ''}`}
-                key={faq.id || idx}
-                onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-              >
-                <div className="faq-question">
-                  <h4>{faq.question}</h4>
-                  <span className="faq-toggle-icon">{openFaq === idx ? '−' : '+'}</span>
-                </div>
-                {openFaq === idx && (
-                  <div className="faq-answer">
-                    <p>{faq.answer}</p>
+            <div className="mobile-scroll-hint">
+              <span>Swipe to read reviews →</span>
+            </div>
+
+            <div className="testimonials-grid">
+              {testimonials.map((t, idx) => (
+                <div className="testimonial-card" key={t.id || idx}>
+                  <div className="t-rating">{'★'.repeat(t.rating || 5)}</div>
+                  <p className="t-comment">&ldquo;{t.comment}&rdquo;</p>
+                  <div className="t-author">
+                    <strong>{t.name}</strong>
+                    <span className="t-city">{t.city} • <span className="t-shawl">{t.shawl}</span></span>
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {faqs.length > 0 && (
+        <section className="faqs-section">
+          <div className="wrap">
+            <div className="section-head" style={{ marginBottom: '32px' }}>
+              <div>
+                <span className="eyebrow">Client Support</span>
+                <h2>Frequently asked questions</h2>
+              </div>
+              <p>Everything you need to know about our ordering process, purity testing, and care guidelines.</p>
+            </div>
+
+            <div className="faqs-accordion">
+              {faqs.map((faq, idx) => (
+                <div
+                  className={`faq-item ${openFaq === idx ? 'open' : ''}`}
+                  key={faq.id || idx}
+                  onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
+                >
+                  <div className="faq-question">
+                    <h4>{faq.question}</h4>
+                    <span className="faq-toggle-icon">{openFaq === idx ? '−' : '+'}</span>
+                  </div>
+                  {openFaq === idx && (
+                    <div className="faq-answer">
+                      <p>{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="contact home-contact">
         <div className="wrap">

@@ -1,6 +1,8 @@
-import { CRAFT_DETAILED_STEPS, WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function CraftPage() {
+  const { craftSteps, whatsappLink } = useStorefrontData();
+
   const scrollToSteps = () => {
     const el = document.getElementById('craft-journey');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -81,7 +83,7 @@ export default function CraftPage() {
           </div>
 
           <div className="craft-steps-grid">
-            {CRAFT_DETAILED_STEPS.map((step) => (
+            {craftSteps.map((step) => (
               <div className="craft-step-card" key={step.number}>
                 <div className="c-step-top">
                   <span className="c-step-num">{step.number}</span>

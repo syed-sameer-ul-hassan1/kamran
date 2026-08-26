@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import { LocationIcon, PhoneIcon, MailIcon, InstagramIcon, TikTokIcon, ShieldCheckIcon, SparklesIcon } from '../components/Icons';
-import { PRODUCTS, WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 import { CardVisual } from '../components/ProductCard';
 
 export default function ContactPage() {
+  const { products, settings, whatsappLink, submitInquiry } = useStorefrontData();
   const [activeTab, setActiveTab] = useState('video-preview');
-  const [selectedProduct, setSelectedProduct] = useState(PRODUCTS[0]);
+  const [selectedProduct, setSelectedProduct] = useState(products[0] || {});
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     city: '',
     notes: '',
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleShawlSelect = (product) => {
     setSelectedProduct(product);
   };
 
-  const handleInquirySubmit = (e) => {
+  const handleInquirySubmit = async (e) => {
     e.preventDefault();
     const modeText =
       activeTab === 'video-preview'
@@ -26,8 +28,17 @@ export default function ContactPage() {
         ? 'Bespoke Bridal / Heirloom Gifting Inquiry'
         : 'Boutique Visit & Curator Consultation';
 
-    const message = `*Kamran Shawls Boutique Inquiry*\n\n• *Service Requested:* ${modeText}\n• *Selected Piece:* ${selectedProduct.name} (${selectedProduct.price})\n• *Client Name:* ${formData.name}\n• *Phone:* ${formData.phone}\n• *City / Location:* ${formData.city}\n• *Notes:* ${formData.notes || 'Please share available shades, close-up texture photos, and drape videos.'}`;
+    const message = `*Kamran Shawls Boutique Inquiry*\n\n• *Service Requested:* ${modeText}\n• *Selected Piece:* ${selectedProduct?.name || 'General Inquiry'} (${selectedProduct?.price || ''})\n• *Client Name:* ${formData.name}\n• *Phone:* ${formData.phone}\n• *City / Location:* ${formData.city}\n• *Notes:* ${formData.notes || 'Please share available shades, close-up texture photos, and drape videos.'}`;
 
+    submitInquiry({
+      name: formData.name,
+      phone: formData.phone,
+      city: formData.city,
+      shawl_name: selectedProduct?.name || 'General Inquiry',
+      message: `${modeText} — ${formData.notes || ''}`
+    });
+
+    setSubmitted(true);
     window.open(`https://wa.me/923002121224?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   };
 

@@ -48,13 +48,21 @@ export default function Hero() {
       <div className="hero-inner hero-layout">
         <div className="hero-content">
           <h1 className="hero-title">
-            Shawls chosen carefully, worn <em>for years</em>
+            {hero.title ? (
+              hero.title.includes('years') ? (
+                <>
+                  {hero.title.split('years')[0]} <em>years</em>
+                </>
+              ) : (
+                hero.title
+              )
+            ) : (
+              <>Shawls chosen carefully, worn <em>for years</em></>
+            )}
           </h1>
 
           <p className="lede hero-lede">
-            Kamran Shawls curates authentic hand-finished Pashmina, Shatoosh and
-            Swati weaves directly from master artisans. Every piece is individually
-            inspected in-store for thread density, finish, and authentic warmth.
+            {hero.lede || 'Kamran Shawls curates authentic hand-finished Pashmina, Shatoosh and Swati weaves directly from master artisans.'}
           </p>
 
           <div className="hero-cta">
@@ -66,7 +74,7 @@ export default function Hero() {
               className="btn btn-primary hero-btn"
               target="_blank"
               rel="noopener noreferrer"
-              href={WHATSAPP_LINK}
+              href={whatsappLink}
             >
               Enquire on WhatsApp
             </a>
