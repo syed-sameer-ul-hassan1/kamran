@@ -120,7 +120,7 @@ export default function Hero() {
                   </div>
                 </div>
 
-                <div className="showcase-image-frame">
+                <Link to={`/product/${featured.id}`} className="showcase-image-frame" style={{ display: 'block', textDecoration: 'none' }}>
                   {featured.imageUrl ? (
                     <img
                       src={featured.imageUrl}
@@ -131,11 +131,18 @@ export default function Hero() {
                     <CardVisual type={featured.visual || 'pashmina'} />
                   )}
                   <div className="showcase-overlay-price">{featured.price}</div>
-                </div>
+                  <span style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(31,25,24,0.85)', color: '#FFFFFF', fontSize: '0.72rem', padding: '3px 8px', borderRadius: '4px', fontWeight: 600 }}>
+                    View Piece →
+                  </span>
+                </Link>
 
                 <div className="showcase-body">
                   <div className="showcase-title-row">
-                    <h3 className="showcase-name">{featured.name}</h3>
+                    <h3 className="showcase-name">
+                      <Link to={`/product/${featured.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        {featured.name}
+                      </Link>
+                    </h3>
                   </div>
 
                   <p className="showcase-desc">{featured.desc}</p>
@@ -152,14 +159,22 @@ export default function Hero() {
                     ))}
                   </div>
 
-                  <div className="showcase-action">
+                  <div className="showcase-action" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                    <Link
+                      to={`/product/${featured.id}`}
+                      className="btn btn-secondary showcase-view-btn"
+                      style={{ flex: 1, textAlign: 'center', justifyContent: 'center' }}
+                    >
+                      View Details
+                    </Link>
                     <a
-                      className="btn btn-primary btn-full showcase-order-btn"
+                      className="btn btn-primary showcase-order-btn"
+                      style={{ flex: 1.2, textAlign: 'center', justifyContent: 'center' }}
                       target="_blank"
                       rel="noopener noreferrer"
                       href={`https://wa.me/923002121224?text=Hello%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(featured.name || 'Shawl')}.`}
                     >
-                      Order This Piece on WhatsApp →
+                      WhatsApp Order →
                     </a>
                   </div>
                 </div>
