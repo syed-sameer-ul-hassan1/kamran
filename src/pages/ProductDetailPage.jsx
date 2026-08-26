@@ -50,10 +50,9 @@ export default function ProductDetailPage() {
 
   return (
     <div className="product-detail-page">
-      {/* Floating Back SVG Button Only (No header, no text) */}
       <button
         type="button"
-        className="product-floating-back-btn"
+        className="product-square-back-btn"
         onClick={() => {
           if (window.history.length > 1) {
             navigate(-1);

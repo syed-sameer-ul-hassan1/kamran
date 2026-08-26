@@ -3748,56 +3748,57 @@ footer.luxury-footer {
 }
 
 /* ==========================================================================
-   Product Detail Page (Pure Minimalist View: Floating Back SVG & Specs)
+   Product Detail Page (Clean View: Sticky Squarish Back Button Only)
    ========================================================================== */
 
-.product-floating-back-btn {
-  position: fixed;
-  top: 20px;
+.product-square-back-btn {
+  position: sticky;
+  top: 18px;
   left: 20px;
-  z-index: 100;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid var(--line);
-  color: #1F1918;
+  z-index: 120;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: 20px;
+  margin-top: 16px;
+  margin-bottom: -44px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  color: #1F1918;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
-  transition: all 0.22s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   outline: none;
 }
 
-.product-floating-back-btn svg {
+.product-square-back-btn svg {
   color: #1F1918;
   transition: transform 0.2s ease;
 }
 
-.product-floating-back-btn:hover {
+.product-square-back-btn:hover {
   background: var(--oxblood);
   border-color: var(--oxblood);
   color: #FFFFFF;
-  transform: scale(1.06);
-  box-shadow: 0 6px 22px var(--oxblood-glow);
+  box-shadow: 0 4px 14px var(--oxblood-glow);
 }
 
-.product-floating-back-btn:hover svg {
+.product-square-back-btn:hover svg {
   color: #FFFFFF;
-  transform: translateX(-2px);
+  transform: translateX(-3px);
 }
 
 .product-detail-page {
-  padding-top: 24px;
   background: var(--cream-pure);
   min-height: 100vh;
-  position: relative;
+  padding-top: 0;
 }
 
 .product-main-container {
-  padding-top: 20px;
+  padding-top: 24px;
   padding-bottom: 70px;
 }
 
@@ -4111,20 +4112,19 @@ footer.luxury-footer {
 
 @media (max-width: 767px) {
   /* Product Detail Page Mobile Alignment */
-  .product-floating-back-btn {
-    top: 14px !important;
-    left: 14px !important;
-    width: 40px !important;
-    height: 40px !important;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) !important;
-  }
-
-  .product-detail-page {
-    padding-top: 12px !important;
+  .product-square-back-btn {
+    top: 12px !important;
+    left: 12px !important;
+    margin-left: 12px !important;
+    margin-top: 12px !important;
+    margin-bottom: -38px !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 6px !important;
   }
 
   .product-main-container {
-    padding-top: 48px !important;
+    padding-top: 14px !important;
     padding-bottom: 40px !important;
   }
 
