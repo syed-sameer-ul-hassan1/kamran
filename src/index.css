@@ -3748,91 +3748,56 @@ footer.luxury-footer {
 }
 
 /* ==========================================================================
-   Product Detail Page (Clean, Professional, Alibaba-Style Specs & 5-Img Gallery)
+   Product Detail Page (Pure Minimalist View: Floating Back SVG & Specs)
    ========================================================================== */
 
-.product-view-nav {
-  background: rgba(255, 255, 255, 0.98) !important;
-  border-bottom: 1px solid var(--line) !important;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04) !important;
-}
-
-.product-nav-back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--cream);
+.product-floating-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #FFFFFF;
   border: 1px solid var(--line);
-  color: var(--text-dark);
-  padding: 7px 14px;
-  border-radius: 30px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
+  color: #1F1918;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  transition: all 0.22s ease;
+  outline: none;
 }
 
-.product-nav-back-btn svg {
-  color: var(--text-dark);
+.product-floating-back-btn svg {
+  color: #1F1918;
   transition: transform 0.2s ease;
 }
 
-.product-nav-back-btn:hover {
+.product-floating-back-btn:hover {
   background: var(--oxblood);
   border-color: var(--oxblood);
   color: #FFFFFF;
+  transform: scale(1.06);
+  box-shadow: 0 6px 22px var(--oxblood-glow);
 }
 
-.product-nav-back-btn:hover svg {
+.product-floating-back-btn:hover svg {
   color: #FFFFFF;
-  transform: translateX(-3px);
+  transform: translateX(-2px);
 }
 
 .product-detail-page {
-  padding-top: 76px;
+  padding-top: 24px;
   background: var(--cream-pure);
-  min-height: 90vh;
-}
-
-.product-breadcrumb-wrap {
-  background: var(--cream);
-  border-bottom: 1px solid var(--line);
-  padding: 12px 0;
-}
-
-.breadcrumb-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
-}
-
-.breadcrumb-nav a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.breadcrumb-nav a:hover {
-  color: var(--oxblood);
-}
-
-.bc-sep {
-  color: var(--line);
-  font-size: 0.76rem;
-}
-
-.bc-current {
-  color: var(--text-dark);
-  font-weight: 600;
+  min-height: 100vh;
+  position: relative;
 }
 
 .product-main-container {
-  padding-top: 36px;
+  padding-top: 20px;
   padding-bottom: 70px;
 }
 
@@ -4146,26 +4111,20 @@ footer.luxury-footer {
 
 @media (max-width: 767px) {
   /* Product Detail Page Mobile Alignment */
+  .product-floating-back-btn {
+    top: 14px !important;
+    left: 14px !important;
+    width: 40px !important;
+    height: 40px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+
   .product-detail-page {
-    padding-top: 56px !important;
-  }
-
-  .product-breadcrumb-wrap {
-    padding: 10px 0 !important;
-  }
-
-  .breadcrumb-nav {
-    font-size: 0.76rem !important;
-    gap: 6px !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
+    padding-top: 12px !important;
   }
 
   .product-main-container {
-    padding-top: 14px !important;
+    padding-top: 48px !important;
     padding-bottom: 40px !important;
   }
 

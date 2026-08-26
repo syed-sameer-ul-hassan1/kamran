@@ -50,18 +50,25 @@ export default function ProductDetailPage() {
 
   return (
     <div className="product-detail-page">
-      {/* Breadcrumb Bar */}
-      <div className="product-breadcrumb-wrap">
-        <div className="wrap">
-          <nav className="breadcrumb-nav" aria-label="Breadcrumb">
-            <Link to="/">Home</Link>
-            <span className="bc-sep">/</span>
-            <Link to="/collection">Collection</Link>
-            <span className="bc-sep">/</span>
-            <span className="bc-current">{product.name}</span>
-          </nav>
-        </div>
-      </div>
+      {/* Floating Back SVG Button Only (No header, no text) */}
+      <button
+        type="button"
+        className="product-floating-back-btn"
+        onClick={() => {
+          if (window.history.length > 1) {
+            navigate(-1);
+          } else {
+            navigate('/collection');
+          }
+        }}
+        aria-label="Back"
+        title="Back"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+      </button>
 
       <div className="wrap product-main-container">
         <div className="product-view-grid">
