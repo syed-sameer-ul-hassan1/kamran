@@ -55,7 +55,7 @@ html {
   }
 }
 
-body {
+html, body {
   margin: 0;
   background: var(--cream);
   color: var(--text-dark);
@@ -64,6 +64,30 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   width: 100%;
+
+  /* Disable text selection across the site */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* Disable double-tap and pinch zoom gestures */
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Allow text selection ONLY in form inputs / textareas so clients can enter details */
+input, textarea, select, [contenteditable="true"] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Prevent image dragging and touch callouts */
+img, svg, a, button {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
