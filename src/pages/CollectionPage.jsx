@@ -175,11 +175,11 @@ export default function CollectionPage() {
       <section className="collection" style={{ paddingTop: '20px' }}>
         <div className="wrap">
           {displayProducts.length === 0 ? (
-            <div className="empty-results-box" style={{ textAlign: 'center', padding: '60px 20px', background: 'var(--cream)', borderRadius: 'var(--radius)', border: '1px solid var(--line)' }}>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', marginBottom: '8px', color: 'var(--text-dark)' }}>
+            <div className="empty-results-box">
+              <h3>
                 {products.length === 0 ? 'Curating New Weaves' : 'No shawls found matching your search'}
               </h3>
-              <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto 20px', fontSize: '0.92rem' }}>
+              <p>
                 {products.length === 0
                   ? 'We are finishing authentic handspun pieces in Nathia Gali. Contact our curator directly on WhatsApp for real-time stock.'
                   : 'Try resetting the category filter or searching for another fabric keyword.'}

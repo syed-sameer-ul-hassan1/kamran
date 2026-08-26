@@ -89,11 +89,11 @@ export default function HomePage() {
           </div>
 
           {filteredProducts.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '50px 20px', background: 'var(--cream)', borderRadius: 'var(--radius)', border: '1px solid var(--line)', margin: '20px 0' }}>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--text-dark)', marginBottom: '8px' }}>
+            <div className="empty-curation-card">
+              <h3>
                 Seasonal Weaves Being Curated
               </h3>
-              <p style={{ color: 'var(--text-muted)', maxWidth: '500px', margin: '0 auto 20px', fontSize: '0.92rem' }}>
+              <p>
                 Our master artisans are currently finishing new heirloom weaves in Nathia Gali. Contact our curator directly on WhatsApp for real-time boutique stock.
               </p>
               <a
