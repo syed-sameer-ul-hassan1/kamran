@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BurgerIcon } from './Icons';
 import { useStorefrontData } from '../context/StorefrontDataContext';
 
@@ -16,6 +16,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,9 +42,59 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location]);
 
-  const isLightPage = location.pathname.startsWith('/product/') || 
-                      (location.pathname.startsWith('/collection/') && location.pathname !== '/collection') ||
-                      location.pathname.startsWith('/guides/');
+  const isProductPage = location.pathname.startsWith('/product/') || 
+                        (location.pathname.startsWith('/collection/') && location.pathname !== '/collection');
+
+  // If on product detail/view page, show focused minimal header with Back Button
+  if (isProductPage) {
+    return (
+      <header className="site-nav product-view-nav scrolled light-page-nav">
+        <div className="nav-inner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <button
+            type="button"
+            className="product-nav-back-btn"
+            onClick={() => {
+              if (window.history.length > 1) {
+                navigate(-1);
+              } else {
+                navigate('/collection');
+              }
+            }}
+            aria-label="Go Back"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Back</span>
+          </button>
+
+          <Link className="brand" to="/" style={{ color: '#1F1918', margin: '0 auto', fontSize: '1.15rem' }}>
+            <img
+              src="/logo-default.svg"
+              alt="Kamran Shawls Logo"
+              className="brand-logo"
+              width="28"
+              height="28"
+            />
+            Kamran Shawls
+          </Link>
+
+          <a
+            className="btn btn-primary btn-sm"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={whatsappLink}
+            style={{ padding: '8px 14px', fontSize: '0.8rem' }}
+          >
+            Order
+          </a>
+        </div>
+      </header>
+    );
+  }
+
+  const isLightPage = location.pathname.startsWith('/guides/');
 
   return (
     <>

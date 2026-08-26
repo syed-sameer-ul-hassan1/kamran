@@ -3751,8 +3751,47 @@ footer.luxury-footer {
    Product Detail Page (Clean, Professional, Alibaba-Style Specs & 5-Img Gallery)
    ========================================================================== */
 
+.product-view-nav {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid var(--line) !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04) !important;
+}
+
+.product-nav-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  color: var(--text-dark);
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.product-nav-back-btn svg {
+  color: var(--text-dark);
+  transition: transform 0.2s ease;
+}
+
+.product-nav-back-btn:hover {
+  background: var(--oxblood);
+  border-color: var(--oxblood);
+  color: #FFFFFF;
+}
+
+.product-nav-back-btn:hover svg {
+  color: #FFFFFF;
+  transform: translateX(-3px);
+}
+
 .product-detail-page {
-  padding-top: 80px;
+  padding-top: 76px;
   background: var(--cream-pure);
   min-height: 90vh;
 }
