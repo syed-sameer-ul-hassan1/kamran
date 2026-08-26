@@ -61,17 +61,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="footer-col">
-          <h4 className="footer-heading">Available Weaves</h4>
-          <ul className="footer-links-list">
-            {(products || []).slice(0, 5).map((product) => (
-              <li key={product.id}>
-                <Link to="/collection">{product.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="footer-col footer-contact-col">
           <h4 className="footer-heading">Boutique Location</h4>
           
