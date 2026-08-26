@@ -170,7 +170,15 @@ export default function ContactPage() {
                         onClick={() => handleShawlSelect(p)}
                       >
                         <div className="chip-visual-mini">
-                          <CardVisual type={p.visual || 'pashmina'} />
+                          {p.imageUrl ? (
+                            <img
+                              src={p.imageUrl}
+                              alt={p.name}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                          ) : (
+                            <CardVisual type={p.visual || 'pashmina'} />
+                          )}
                         </div>
                         <div className="chip-meta">
                           <strong>{p.name}</strong>

@@ -78,12 +78,22 @@ export function CardVisual({ type }) {
 }
 
 export default function ProductCard({ product }) {
-  const enquiryUrl = `https://wa.me/923002121224?text=Hi%2C%20I%27m%20interested%20in%20the%20${product.enquiryText}%20(${product.price}).`;
+  const enquiryUrl = `https://wa.me/923002121224?text=Hi%2C%20I%27m%20interested%20in%20the%20${product.enquiryText || encodeURIComponent(product.name)}%20(${encodeURIComponent(product.price)}).`;
 
   return (
     <article className="card card-rich">
       <div className="card-visual">
-        <CardVisual type={product.visual} />
+        {product.imageUrl ? (
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="card-photo-img"
+            loading="lazy"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : (
+          <CardVisual type={product.visual || 'pashmina'} />
+        )}
         <span className="card-visual-tag">{product.tag}</span>
         {product.dimensions && (
           <span className="card-visual-dim">{product.dimensions}</span>

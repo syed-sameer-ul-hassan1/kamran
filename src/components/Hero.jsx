@@ -121,7 +121,15 @@ export default function Hero() {
                 </div>
 
                 <div className="showcase-image-frame">
-                  <CardVisual type={featured.visual || 'pashmina'} />
+                  {featured.imageUrl ? (
+                    <img
+                      src={featured.imageUrl}
+                      alt={featured.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <CardVisual type={featured.visual || 'pashmina'} />
+                  )}
                   <div className="showcase-overlay-price">{featured.price}</div>
                 </div>
 
