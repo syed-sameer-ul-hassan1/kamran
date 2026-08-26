@@ -566,9 +566,9 @@ header.site-nav.light-page-nav .burger {
   background: rgba(245, 239, 230, 0.1);
   border: 1px solid rgba(184, 147, 74, 0.35);
   color: var(--gold-soft);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius);
   font-size: 1.15rem;
   display: flex;
   align-items: center;
