@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCTS, WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 import { CardVisual } from './ProductCard';
 
 export default function Hero() {
+  const { hero, products, whatsappLink } = useStorefrontData();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const showcaseProducts = PRODUCTS.slice(0, 4);
-  const featured = showcaseProducts[currentIndex];
+  const showcaseProducts = (products && products.length > 0 ? products : []).filter((p) => p.featured || p.inStock).slice(0, 4);
+  const featured = showcaseProducts[currentIndex] || showcaseProducts[0] || (products && products[0]);
 
   const handlePrev = () => {
+    if (showcaseProducts.length <= 1) return;
     setCurrentIndex((prev) => (prev === 0 ? showcaseProducts.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
+    if (showcaseProducts.length <= 1) return;
     setCurrentIndex((prev) => (prev === showcaseProducts.length - 1 ? 0 : prev + 1));
   };
 

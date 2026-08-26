@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import { PRODUCTS, WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function CollectionPage() {
+  const { products, whatsappLink } = useStorefrontData();
   const [selectedCat, setSelectedCat] = useState('all');
   const [sortOrder, setSortOrder] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
 
-  let displayProducts = PRODUCTS.filter((item) => {
+  let displayProducts = products.filter((item) => {
     const matchesCat =
       selectedCat === 'all' ||
       item.category === selectedCat ||

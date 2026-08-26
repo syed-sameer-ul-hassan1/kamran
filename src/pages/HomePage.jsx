@@ -121,8 +121,8 @@ export default function HomePage() {
           </div>
 
           <div className="materials-grid">
-            {MATERIALS_GUIDE.map((mat) => (
-              <div className="material-card" key={mat.name}>
+            {materials.map((mat) => (
+              <div className="material-card" key={mat.id || mat.name}>
                 <div className="mat-header">
                   <div>
                     <span className="mat-badge">Mountain Fleece</span>
@@ -226,9 +226,9 @@ export default function HomePage() {
           </div>
 
           <div className="testimonials-grid">
-            {TESTIMONIALS.map((t, idx) => (
-              <div className="testimonial-card" key={idx}>
-                <div className="t-rating">{'★'.repeat(t.rating)}</div>
+            {testimonials.map((t, idx) => (
+              <div className="testimonial-card" key={t.id || idx}>
+                <div className="t-rating">{'★'.repeat(t.rating || 5)}</div>
                 <p className="t-comment">&ldquo;{t.comment}&rdquo;</p>
                 <div className="t-author">
                   <strong>{t.name}</strong>
@@ -251,10 +251,10 @@ export default function HomePage() {
           </div>
 
           <div className="faqs-accordion">
-            {FAQS.map((faq, idx) => (
+            {faqs.map((faq, idx) => (
               <div
                 className={`faq-item ${openFaq === idx ? 'open' : ''}`}
-                key={idx}
+                key={faq.id || idx}
                 onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
               >
                 <div className="faq-question">
@@ -294,7 +294,7 @@ export default function HomePage() {
                     className="btn btn-primary btn-large concierge-wa-btn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={WHATSAPP_LINK}
+                    href={whatsappLink}
                   >
                     Chat with Curator on WhatsApp →
                   </a>
