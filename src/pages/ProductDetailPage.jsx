@@ -199,10 +199,6 @@ export default function ProductDetailPage() {
             {/* Quality Guarantees */}
             <div className="product-guarantees-grid">
               <div className="guarantee-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <polyline points="9 12 11 14 15 10" />
-                </svg>
                 <div>
                   <strong>Authenticity Verified</strong>
                   <span>Handcrafted by master spinners & weavers</span>
@@ -210,10 +206,6 @@ export default function ProductDetailPage() {
               </div>
 
               <div className="guarantee-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
                 <div>
                   <strong>Boutique Store Coordinates</strong>
                   <span>Main Bazaar, Nathia Gali, KPK</span>

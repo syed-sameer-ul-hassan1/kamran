@@ -244,6 +244,21 @@ input, select, textarea {
   transform: translateY(-1px);
 }
 
+.btn-secondary {
+  background: transparent;
+  color: var(--oxblood, #721B24);
+  border: 1.5px solid var(--oxblood, #721B24);
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background: var(--gold, #C5A059);
+  color: #1F1918;
+  border-color: var(--gold, #C5A059);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
+}
+
 .btn-arrow {
   transition: transform 0.2s ease;
 }
@@ -1306,8 +1321,36 @@ header.site-nav.light-page-nav .burger {
 
 .card-enquire-btn {
   font-size: 0.78rem;
-  padding: 8px 12px;
+  padding: 8px 14px;
   white-space: nowrap;
+  background: transparent;
+  border: 1.5px solid var(--oxblood, #721B24);
+  color: var(--oxblood, #721B24);
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: all 0.22s ease;
+}
+
+.card-enquire-btn:hover {
+  background: var(--gold, #C5A059);
+  border-color: var(--gold, #C5A059);
+  color: #1F1918;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
+}
+
+.showcase-view-btn {
+  background: transparent;
+  border: 1.5px solid var(--oxblood, #721B24);
+  color: var(--oxblood, #721B24);
+  font-weight: 600;
+  transition: all 0.22s ease;
+}
+
+.showcase-view-btn:hover {
+  background: var(--gold, #C5A059);
+  border-color: var(--gold, #C5A059);
+  color: #1F1918;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
 }
 
 .collection-cta-wrap {
