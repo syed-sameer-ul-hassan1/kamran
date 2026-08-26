@@ -130,7 +130,7 @@ export default function CollectionPage() {
                 className={`filter-btn ${selectedCat === 'all' ? 'active' : ''}`}
                 onClick={() => setSelectedCat('all')}
               >
-                All Shawls ({PRODUCTS.length})
+                All Shawls ({products.length})
               </button>
               <button
                 type="button"
@@ -175,19 +175,31 @@ export default function CollectionPage() {
       <section className="collection" style={{ paddingTop: '20px' }}>
         <div className="wrap">
           {displayProducts.length === 0 ? (
-            <div className="empty-results-box">
-              <h3>No shawls found matching your search</h3>
-              <p>Try resetting the category filter or searching for another fabric keyword.</p>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  setSelectedCat('all');
-                  setSearchQuery('');
-                }}
-              >
-                Reset All Filters
-              </button>
+            <div className="empty-results-box" style={{ textAlign: 'center', padding: '60px 20px', background: 'var(--cream)', borderRadius: 'var(--radius)', border: '1px solid var(--line)' }}>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', marginBottom: '8px', color: 'var(--text-dark)' }}>
+                {products.length === 0 ? 'Curating New Weaves' : 'No shawls found matching your search'}
+              </h3>
+              <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto 20px', fontSize: '0.92rem' }}>
+                {products.length === 0
+                  ? 'We are finishing authentic handspun pieces in Nathia Gali. Contact our curator directly on WhatsApp for real-time stock.'
+                  : 'Try resetting the category filter or searching for another fabric keyword.'}
+              </p>
+              {products.length === 0 ? (
+                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-large">
+                  Ask Curator on WhatsApp →
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    setSelectedCat('all');
+                    setSearchQuery('');
+                  }}
+                >
+                  Reset All Filters
+                </button>
+              )}
             </div>
           ) : (
             <div className="grid">
