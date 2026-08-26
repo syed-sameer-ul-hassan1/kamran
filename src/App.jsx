@@ -3,7 +3,6 @@ import { StorefrontDataProvider } from './context/StorefrontDataContext';
 import { BotehSymbol } from './components/Icons';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import WhatsAppFloat from './components/WhatsAppFloat';
 import ScrollToTop from './components/ScrollToTop';
 import SEO from './components/SEO';
 
@@ -21,7 +20,6 @@ export default function App() {
       <BrowserRouter>
         <SEO />
         <BotehSymbol />
-        <WhatsAppFloat />
         <ScrollToTop />
         <Navbar />
 
