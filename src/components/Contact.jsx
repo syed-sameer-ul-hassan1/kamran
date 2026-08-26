@@ -11,9 +11,9 @@ export default function Contact() {
           <span className="eyebrow">Get in Touch</span>
           <h2 style={{ margin: '12px 0 16px' }}>Enquire about a piece</h2>
           <p>
-            We take orders directly over WhatsApp, call, or email — no account
+            We take inquiries directly over WhatsApp, call, or email — no account
             or checkout needed. Tell us the shawl you&apos;re interested in and
-            we&apos;ll confirm price, colour and delivery time.
+            we&apos;ll confirm price, colour, and in-store availability in Nathia Gali.
           </p>
           <div className="contact-actions">
             <a

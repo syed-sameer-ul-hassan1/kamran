@@ -41,7 +41,7 @@ export default function HomePage() {
             <span className="pillar-num">03</span>
             <div className="pillar-text">
               <h4>Direct Artisan Concierge</h4>
-              <p>Direct WhatsApp consultation for real-time video previews, drape advice, and tracked nationwide express delivery.</p>
+              <p>Direct WhatsApp consultation for real-time video previews, drape advice, and Nathia Gali boutique coordinates.</p>
             </div>
           </div>
         </div>
@@ -311,7 +311,7 @@ export default function HomePage() {
                 <p className="concierge-desc">
                   Have questions about weave weights, shades, or custom gifting? 
                   Message us directly on WhatsApp for real-time video previews, 
-                  high-resolution fabric texture photos, and tracked nationwide delivery.
+                  high-resolution fabric texture photos, and boutique reservations in Nathia Gali.
                 </p>
 
                 <div className="concierge-cta-group">

@@ -212,14 +212,12 @@ export default function ProductDetailPage() {
 
               <div className="guarantee-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="1" y="3" width="15" height="13" />
-                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                  <circle cx="5.5" cy="18.5" r="2.5" />
-                  <circle cx="18.5" cy="18.5" r="2.5" />
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
                 </svg>
                 <div>
-                  <strong>Nationwide Dispatch</strong>
-                  <span>Fast, insured delivery with tracking</span>
+                  <strong>Boutique Store Coordinates</strong>
+                  <span>Main Bazaar, Nathia Gali, KPK</span>
                 </div>
               </div>
             </div>

@@ -116,7 +116,7 @@ export const CRAFT_DETAILED_STEPS = [
     details: [
       '100% purity and weight verification',
       'Gentle cedar press and protective packing',
-      'Direct nationwide tracked courier dispatch',
+      'Personal in-person inspection at our boutique',
     ],
   },
 ];

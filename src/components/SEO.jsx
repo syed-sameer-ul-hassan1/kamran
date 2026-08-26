@@ -5,12 +5,12 @@ import { GUIDES } from '../data/guidesData';
 const BASE_SEO_MAP = {
   '/': {
     title: 'Kamran Shawls | Best Authentic Pashmina, Pure Shatoosh & Swati Wool Shawls in Pakistan',
-    description: "Kamran Shawls Nathia Gali — Pakistan's premier boutique for authentic 100% pure Himalayan Pashmina shawls, royal Shatoosh, Swati handloom wool chadars, and Kashmiri embroidered wraps. Tracked nationwide delivery & live video inspection.",
+    description: "Kamran Shawls Nathia Gali — Premier boutique for authentic 100% pure Himalayan Pashmina shawls, royal Shatoosh, Swati handloom wool chadars, and Kashmiri embroidered wraps in Main Bazaar, Nathia Gali, KPK.",
     canonical: 'https://kamranshawls.com.pk/',
   },
   '/collection': {
-    title: 'Shop Authentic Mountain Shawls & Wraps | Kamran Shawls Catalogue',
-    description: 'Browse our complete curated collection of authentic Himalayan Pashmina, Royal Shatoosh, Swati Wool Chadars, and Kashmiri Sozni Stoles. Live video inspection before COD dispatch.',
+    title: 'Authentic Mountain Shawls & Wraps | Kamran Shawls Nathia Gali',
+    description: 'Browse our complete curated collection of authentic Himalayan Pashmina, Royal Shatoosh, Swati Wool Chadars, and Kashmiri Sozni Stoles available at our Nathia Gali boutique.',
     canonical: 'https://kamranshawls.com.pk/collection',
   },
   '/craft': {
@@ -19,8 +19,8 @@ const BASE_SEO_MAP = {
     canonical: 'https://kamranshawls.com.pk/craft',
   },
   '/contact': {
-    title: 'Direct Atelier Consultation & Store Coordinates | Kamran Shawls Nathia Gali',
-    description: 'Connect directly with our curators in Nathia Gali for live video demonstrations, bespoke bridal color matching, and worldwide express tracked delivery.',
+    title: 'Boutique Coordinates & Personal Consultation | Kamran Shawls Nathia Gali',
+    description: 'Connect directly with our curators in Nathia Gali for live video demonstrations, bespoke bridal color matching, and in-person boutique visits in Main Bazaar.',
     canonical: 'https://kamranshawls.com.pk/contact',
   },
   '/guides': {

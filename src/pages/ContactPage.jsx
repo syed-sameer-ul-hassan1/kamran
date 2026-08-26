@@ -231,12 +231,12 @@ export default function ContactPage() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="client-city">Your City / Delivery Location *</label>
+                  <label htmlFor="client-city">Your Location / City *</label>
                   <input
                     id="client-city"
                     type="text"
                     required
-                    placeholder="e.g. Islamabad, Lahore, Karachi, Peshawar, Overseas"
+                    placeholder="e.g. Nathia Gali, Abbottabad, Murree, Islamabad"
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   />
@@ -253,96 +253,71 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-large btn-full atelier-submit-btn">
-                  Submit & Chat on WhatsApp →
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="btn btn-primary btn-full atelier-submit-btn"
+                >
+                  {submitting ? 'Sending Request...' : 'Send WhatsApp Inquiry →'}
                 </button>
               </form>
             </div>
 
+            {/* Right Column: Atelier Passport */}
             <div className="atelier-passport-panel">
-              <div className="passport-inner">
-                <div className="passport-header">
-                  <span className="eyebrow on-dark">Boutique Coordinates</span>
-                  <h3>Kamran Shawls Nathia Gali</h3>
-                  <p className="passport-desc">
-                    Historic flagship salon in the pine hills of Khyber Pakhtunkhwa. 
-                    Serving patrons and collectors for over three decades.
-                  </p>
+              <div className="passport-header">
+                <span className="pass-eyebrow">Boutique Coordinates</span>
+                <h3>Visit Us in Nathia Gali</h3>
+                <p>Experience the warmth and tactile feel of genuine Himalayan weaves in person.</p>
+              </div>
+
+              <div className="passport-details-list">
+                <div className="pass-item">
+                  <div className="pass-icon">📍</div>
+                  <div className="pass-content">
+                    <strong>Boutique Address</strong>
+                    <span>{settings.address || 'Main Bazaar, Nathia Gali, District Abbottabad, KPK, Pakistan'}</span>
+                  </div>
                 </div>
 
-                <div className="passport-items">
-                  <div className="pass-item">
-                    <div className="pass-icon"><LocationIcon /></div>
-                    <div className="pass-text">
-                      <span className="pass-lbl">Store Location</span>
-                      <span className="pass-val">Main Bazaar, Nathia Gali, District Abbottabad, KPK, Pakistan</span>
-                    </div>
-                  </div>
-
-                  <div className="pass-item">
-                    <div className="pass-icon"><PhoneIcon /></div>
-                    <div className="pass-text">
-                      <span className="pass-lbl">Direct Curators Helpline</span>
-                      <div className="pass-phone-row">
-                        <a href="tel:+923002121224">+92 300 2121224</a>
-                        <span className="pass-sep">•</span>
-                        <a href="tel:+923499134377">+92 349 9134377</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pass-item">
-                    <div className="pass-icon"><MailIcon /></div>
-                    <div className="pass-text">
-                      <span className="pass-lbl">Email Inquiries</span>
-                      <a href="mailto:hello@kamranshawls.com.pk">hello@kamranshawls.com.pk</a>
+                <div className="pass-item">
+                  <div className="pass-icon">📞</div>
+                  <div className="pass-content">
+                    <strong>Direct Store Lines</strong>
+                    <div className="pass-phone-row">
+                      <a href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>{settings.phonePrimary || '+92 300 2121224'}</a>
+                      <span className="pass-sep">•</span>
+                      <a href={`tel:${(settings.phoneSecondary || '+923499134377').replace(/\s/g, '')}`}>{settings.phoneSecondary || '+92 349 9134377'}</a>
                     </div>
                   </div>
                 </div>
 
-                <div className="passport-socials">
-                  <span className="pass-lbl">Official Live Broadcasts</span>
-                  <div className="pass-social-btns">
-                    <a
-                      href="https://tiktok.com/@kamranshawls"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pass-social-btn"
-                    >
-                      <TikTokIcon />
-                      <span>TikTok @kamranshawls</span>
-                    </a>
-
-                    <a
-                      href="https://instagram.com/kamranshawls"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pass-social-btn"
-                    >
-                      <InstagramIcon />
-                      <span>Instagram @kamranshawls</span>
-                    </a>
+                <div className="pass-item">
+                  <div className="pass-icon">🕒</div>
+                  <div className="pass-content">
+                    <strong>Visiting Hours</strong>
+                    <span>Summer: {settings.timingsSummer || '9:00 AM – 10:00 PM (Daily)'}</span>
+                    <span>Winter: {settings.timingsWinter || '10:00 AM – 8:00 PM (Daily)'}</span>
                   </div>
                 </div>
+              </div>
 
-                <div className="passport-timings">
-                  <div className="pt-title">Seasonal Boutique Timings</div>
-                  <div className="pt-row">
-                    <span>Summer (May – Oct):</span>
-                    <strong>10:00 AM – 10:00 PM Daily</strong>
-                  </div>
-                  <div className="pt-row">
-                    <span>Winter (Nov – Apr):</span>
-                    <strong>11:00 AM – 8:00 PM Daily</strong>
-                  </div>
-                </div>
+              <div className="passport-action">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-full"
+                >
+                  Message Boutique on WhatsApp →
+                </a>
               </div>
             </div>
           </div>
 
           <div className="atelier-ordering-disclaimer">
             <p className="a-disc-text">
-              All remote orders are confirmed directly with our curators via WhatsApp. Inspect photos and live videos before tracked nationwide dispatch with Cash-on-Delivery.
+              All inquiries and reservations are confirmed directly with our curators via WhatsApp. Visit our Main Bazaar boutique in Nathia Gali to inspect handspun weaves in person.
             </p>
           </div>
         </div>
@@ -351,35 +326,35 @@ export default function ContactPage() {
       <section className="order-flow-section">
         <div className="wrap">
           <div className="section-head text-center" style={{ margin: '0 auto 36px', textAlign: 'center', maxWidth: '640px' }}>
-            <span className="eyebrow">Transparent Ordering</span>
-            <h2>How remote curation works</h2>
-            <p>A personal, transparent process designed to give you complete confidence before purchasing.</p>
+            <span className="eyebrow">Personal Curation</span>
+            <h2>How boutique consultation works</h2>
+            <p>A personal, transparent process designed to give you complete confidence in our handspun pieces.</p>
           </div>
 
           <div className="mobile-scroll-hint" style={{ justifyContent: 'center' }}>
-            <span>Swipe to view ordering steps →</span>
+            <span>Swipe to view curation steps →</span>
           </div>
 
           <div className="flow-steps-grid">
             <div className="flow-step">
               <span className="flow-num">1</span>
-              <h4>Choose Your Weave</h4>
-              <p>Browse our collection online and select the shawl style or fabric you desire.</p>
+              <h4>Explore Collection</h4>
+              <p>Browse our seasonal catalogue online to explore available weave patterns and fabrics.</p>
             </div>
             <div className="flow-step">
               <span className="flow-num">2</span>
-              <h4>Live Video & Photos</h4>
-              <p>We send you high-resolution photos and video previews of the exact piece in store.</p>
+              <h4>Live WhatsApp Consultation</h4>
+              <p>Connect with our curator for high-resolution closeups, drape guidance, and shade matching.</p>
             </div>
             <div className="flow-step">
               <span className="flow-num">3</span>
-              <h4>Express Tracked Dispatch</h4>
-              <p>Your shawl is steam pressed, packed in cedar wrap, and handed to express couriers.</p>
+              <h4>Piece Preparation</h4>
+              <p>Your chosen piece is steam pressed and preserved in artisanal cedar packaging.</p>
             </div>
             <div className="flow-step">
               <span className="flow-num">4</span>
-              <h4>Inspection & Payment</h4>
-              <p>Receive your package at your doorstep within 1-3 days and pay safely upon delivery.</p>
+              <h4>In-Store Boutique Pickup</h4>
+              <p>Visit our boutique in Main Bazaar, Nathia Gali to inspect the weave and complete your purchase.</p>
             </div>
           </div>
         </div>

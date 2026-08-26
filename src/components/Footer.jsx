@@ -113,7 +113,7 @@ export default function Footer() {
       <div className="wrap footer-disclaimer-wrap">
         <div className="footer-disclaimer-card">
           <p className="f-disc-text">
-            All remote orders are confirmed directly with our curators via WhatsApp. Inspect photos and live videos before tracked nationwide dispatch with Cash-on-Delivery.
+            All inquiries and reservations are confirmed directly with our curators via WhatsApp. Visit our Main Bazaar boutique in Nathia Gali to inspect handspun Himalayan weaves in person.
           </p>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function Footer() {
         <div className="wrap footer-bottom-inner">
           <p>© {new Date().getFullYear()} Kamran Shawls Nathia Gali (kamranshawls.com.pk). All rights reserved.</p>
           <div className="footer-bottom-note">
-            <span>Tracked Nationwide Courier Dispatch</span>
+            <span>Main Bazaar, Nathia Gali, KPK, Pakistan</span>
           </div>
         </div>
       </div>
