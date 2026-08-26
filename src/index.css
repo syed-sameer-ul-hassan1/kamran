@@ -3432,3 +3432,238 @@ footer.luxury-footer {
   transform: translateY(-2px);
   color: var(--text-light);
 }
+
+/* ==========================================================================
+   Comprehensive Mobile Viewport Alignment & Responsive Overhauls (< 768px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  html, body, #root {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  .wrap {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Nav Header & Brand Alignment */
+  .nav-inner {
+    padding: 10px 16px !important;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .brand {
+    font-size: 1.12rem !important;
+    gap: 8px !important;
+  }
+
+  .brand .brand-logo {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .burger {
+    padding: 6px 8px !important;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hero & Page Hero Centering / Left Alignment */
+  .hero-inner, .page-hero-inner {
+    padding-top: 86px !important;
+    padding-bottom: 40px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+  }
+
+  .hero-title, .page-hero-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.6rem) !important;
+    line-height: 1.16 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-lede, .page-hero-lede {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-cta, .page-hero-cta {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+  }
+
+  .hero-cta .btn, .page-hero-cta .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 12px 18px !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* Flush Horizontal Swiper Alignment */
+  .home-collection-grid,
+  .craft-steps-grid,
+  .testimonials-grid,
+  .flow-steps-grid,
+  .materials-scroll,
+  .controls-bar .filter-pills,
+  .atelier-tabs-nav {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    scroll-padding: 0 16px !important;
+    width: auto !important;
+    max-width: calc(100% + 32px) !important;
+    box-sizing: border-box;
+  }
+
+  /* Catalogue Controls on Collection Page */
+  .controls-bar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  .search-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .sort-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box;
+  }
+
+  .sort-select {
+    flex: 1 !important;
+    max-width: 220px !important;
+  }
+
+  /* Sizing Cards & Comparison Tables */
+  .sizing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .size-card {
+    padding: 18px 16px !important;
+  }
+
+  .comparison-table-wrap {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .comparison-table {
+    min-width: 580px !important;
+  }
+
+  /* Contact & Consultation Suite on Mobile */
+  .atelier-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .atelier-form-panel {
+    padding: 20px 16px !important;
+  }
+
+  .weave-picker-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .weave-chip {
+    padding: 8px !important;
+  }
+
+  .selected-weave-bar {
+    padding: 12px 14px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .swb-price-badge {
+    align-self: flex-start;
+  }
+
+  .atelier-passport-panel {
+    padding: 20px 16px !important;
+  }
+
+  .pass-phone-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+  }
+
+  .pass-phone-row .pass-sep {
+    display: none !important;
+  }
+
+  .pass-social-btns {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .pass-social-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Footer Alignment */
+  .footer-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .footer-brand-col,
+  .footer-contact-col {
+    align-items: flex-start !important;
+  }
+
+  .footer-social-pills {
+    width: 100% !important;
+  }
+
+  .footer-wa-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+  }
+}
+
