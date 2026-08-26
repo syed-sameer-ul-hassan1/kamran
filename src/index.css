@@ -2218,6 +2218,8 @@ header.site-nav.light-page-nav .burger {
   align-items: center;
   gap: 10px;
   justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0 4px;
 }
 
 .sort-label {
@@ -2228,10 +2230,12 @@ header.site-nav.light-page-nav .burger {
   color: var(--text-muted);
   white-space: nowrap;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .sort-select {
-  padding: 8px 14px;
+  height: 38px;
+  padding: 0 14px;
   font-family: 'Inter', sans-serif;
   font-size: 0.84rem;
   border: 1px solid var(--line);
@@ -2240,37 +2244,13 @@ header.site-nav.light-page-nav .burger {
   color: var(--text-dark);
   cursor: pointer;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
 .sort-select:focus {
   border-color: var(--oxblood);
-}
-
-@media (min-width: 860px) {
-  .sort-wrap {
-    justify-content: flex-end;
-  }
-}
-
-.sort-label {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  font-family: 'Inter', sans-serif;
-  white-space: nowrap;
-  font-weight: 500;
-}
-
-.sort-select {
-  padding: 9px 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.84rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #FFFFFF;
-  color: var(--text-dark);
-  cursor: pointer;
-  font-weight: 500;
+  box-shadow: 0 0 0 3px var(--oxblood-glow);
 }
 
 .empty-results-box {
@@ -3765,6 +3745,14 @@ footer.luxury-footer {
     -ms-overflow-style: none !important;
   }
 
+  .filter-pills::after {
+    content: '';
+    display: block;
+    flex: 0 0 16px !important;
+    width: 16px !important;
+    height: 1px;
+  }
+
   .filter-pills::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
@@ -3803,11 +3791,13 @@ footer.luxury-footer {
     align-items: stretch !important;
     gap: 14px !important;
     width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .search-wrap {
     width: 100% !important;
     max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .sort-wrap {
@@ -3815,12 +3805,28 @@ footer.luxury-footer {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    box-sizing: border-box;
+    gap: 12px !important;
+    padding: 4px 2px !important;
+    box-sizing: border-box !important;
+  }
+
+  .sort-label {
+    flex-shrink: 0 !important;
+    font-size: 0.74rem !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    color: var(--text-muted) !important;
   }
 
   .sort-select {
     flex: 1 !important;
     max-width: 220px !important;
+    height: 38px !important;
+    padding: 0 14px !important;
+    font-size: 0.84rem !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
   }
 
   /* Sizing Cards & Comparison Tables */
