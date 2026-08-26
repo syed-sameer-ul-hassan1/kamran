@@ -78,13 +78,13 @@ export default function CollectionPage() {
 
           <div className="page-hero-cta">
             <button type="button" onClick={scrollToCatalogue} className="btn btn-gold btn-large">
-              Browse Catalogue ({PRODUCTS.length} Weaves) ↓
+              Browse Catalogue ({products.length} Weaves) ↓
             </button>
             <a
               className="btn btn-primary btn-large"
               target="_blank"
               rel="noopener noreferrer"
-              href={WHATSAPP_LINK}
+              href={whatsappLink}
             >
               Inquire on WhatsApp →
             </a>

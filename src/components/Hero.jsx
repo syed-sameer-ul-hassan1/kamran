@@ -85,78 +85,100 @@ export default function Hero() {
           <div className="showcase-card">
             <div className="showcase-glow" />
 
-            <div className="showcase-header">
-              <div className="showcase-badge-group">
-                <span className="showcase-counter">
-                  0{currentIndex + 1} / 0{showcaseProducts.length}
-                </span>
-              </div>
+            {featured ? (
+              <>
+                <div className="showcase-header">
+                  <div className="showcase-badge-group">
+                    <span className="showcase-counter">
+                      0{currentIndex + 1} / 0{showcaseProducts.length}
+                    </span>
+                  </div>
 
-              <div className="showcase-nav-arrows">
-                <button
-                  type="button"
-                  className="nav-arrow-btn"
-                  onClick={handlePrev}
-                  aria-label="Previous Featured Weave"
-                  title="Previous shawl"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  className="nav-arrow-btn"
-                  onClick={handleNext}
-                  aria-label="Next Featured Weave"
-                  title="Next shawl"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
+                  <div className="showcase-nav-arrows">
+                    <button
+                      type="button"
+                      className="nav-arrow-btn"
+                      onClick={handlePrev}
+                      aria-label="Previous Featured Weave"
+                      title="Previous shawl"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 18 9 12 15 6" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      className="nav-arrow-btn"
+                      onClick={handleNext}
+                      aria-label="Next Featured Weave"
+                      title="Next shawl"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
 
-            <div className="showcase-image-frame">
-              <CardVisual type={featured.visual} />
-              
-              <div className="showcase-overlay-price">
-                {featured.price}
-              </div>
-            </div>
+                <div className="showcase-image-frame">
+                  <CardVisual type={featured.visual || 'pashmina'} />
+                  <div className="showcase-overlay-price">{featured.price}</div>
+                </div>
 
-            <div className="showcase-body">
-              <div className="showcase-title-row">
-                <h3 className="showcase-name">{featured.name}</h3>
-              </div>
+                <div className="showcase-body">
+                  <div className="showcase-title-row">
+                    <h3 className="showcase-name">{featured.name}</h3>
+                  </div>
 
-              <p className="showcase-desc">{featured.desc}</p>
+                  <p className="showcase-desc">{featured.desc}</p>
 
-              <div className="showcase-pagination">
-                {showcaseProducts.map((p, idx) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    className={`pagination-dot ${currentIndex === idx ? 'active' : ''}`}
-                    onClick={() => setCurrentIndex(idx)}
-                    aria-label={`Select weave ${idx + 1}`}
-                  />
-                ))}
-              </div>
+                  <div className="showcase-pagination">
+                    {showcaseProducts.map((p, idx) => (
+                      <button
+                        key={p.id || idx}
+                        type="button"
+                        className={`pagination-dot ${currentIndex === idx ? 'active' : ''}`}
+                        onClick={() => setCurrentIndex(idx)}
+                        aria-label={`Select weave ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
 
-              <div className="showcase-action">
+                  <div className="showcase-action">
+                    <a
+                      className="btn btn-primary btn-full showcase-order-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`https://wa.me/923002121224?text=Hello%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(featured.name || 'Shawl')}.`}
+                    >
+                      Order This Piece on WhatsApp →
+                    </a>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ padding: '36px 24px', textAlign: 'center', minHeight: '340px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ width: '64px', height: '64px', background: 'radial-gradient(circle, var(--oxblood) 0%, #4A1416 100%)', border: '1px solid var(--gold)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                  <img src="/logo-dark.svg" alt="Kamran Shawls Logo" style={{ width: '36px', height: '36px', objectFit: 'contain' }} />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-serif)', color: 'var(--cream-pure)', fontSize: '1.35rem', margin: '0 0 8px' }}>
+                  Kamran Shawls Atelier
+                </h3>
+                <p style={{ color: 'var(--cream-soft)', fontSize: '0.88rem', margin: '0 0 20px', lineHeight: 1.5 }}>
+                  Main Bazaar, Nathia Gali, KPK<br />
+                  Authentic Himalayan handspun weaves & bespoke bridal shawls.
+                </p>
                 <a
-                  className="btn btn-primary btn-full showcase-order-btn"
+                  href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={`https://wa.me/923002121224?text=Hello%2C%20I%20am%20interested%20in%20the%20${featured.enquiryText}.`}
+                  className="btn btn-primary btn-full"
+                  style={{ justifyContent: 'center' }}
                 >
-                  Order This Piece on WhatsApp →
+                  Consult Curator on WhatsApp →
                 </a>
               </div>
-            </div>
-
+            )}
           </div>
         </div>
       </div>

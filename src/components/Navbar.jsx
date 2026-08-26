@@ -72,7 +72,7 @@ export default function Navbar() {
             className="btn btn-primary nav-cta"
             target="_blank"
             rel="noopener noreferrer"
-            href={WHATSAPP_LINK}
+            href={whatsappLink}
           >
             Enquire on WhatsApp
           </a>
@@ -137,7 +137,7 @@ export default function Navbar() {
                   className="btn btn-primary btn-large m-nav-btn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={WHATSAPP_LINK}
+                  href={whatsappLink}
                   onClick={() => setMenuOpen(false)}
                 >
                   Chat with Curator on WhatsApp →

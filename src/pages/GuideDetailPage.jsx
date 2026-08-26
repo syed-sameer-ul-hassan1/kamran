@@ -1,16 +1,18 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { GUIDES } from '../data/guidesData';
-import { WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function GuideDetailPage() {
   const { slug } = useParams();
+  const { settings } = useStorefrontData();
   const guide = GUIDES.find((g) => g.slug === slug);
 
   if (!guide) {
     return <Navigate to="/guides" replace />;
   }
 
-  const whatsappInquiryUrl = `https://wa.me/923002121224?text=Hello%20Kamran%20Shawls%2C%20I%20read%20your%20guide%20on%20%22${encodeURIComponent(guide.shortTitle)}%22%20and%20would%20like%20to%20consult%20a%20curator.`;
+  const phoneNum = (settings.phonePrimary || '923002121224').replace(/[^0-9]/g, '');
+  const whatsappInquiryUrl = `https://wa.me/${phoneNum}?text=Hello%20Kamran%20Shawls%2C%20I%20read%20your%20guide%20on%20%22${encodeURIComponent(guide.shortTitle)}%22%20and%20would%20like%20to%20consult%20a%20curator.`;
 
   return (
     <>

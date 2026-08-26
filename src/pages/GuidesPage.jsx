@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { GUIDES } from '../data/guidesData';
-import { WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function GuidesPage() {
+  const { whatsappLink } = useStorefrontData();
   return (
     <>
       <section className="page-hero page-hero-full">
@@ -45,7 +46,7 @@ export default function GuidesPage() {
               className="btn btn-primary btn-large"
               target="_blank"
               rel="noopener noreferrer"
-              href={WHATSAPP_LINK}
+              href={whatsappLink}
             >
               Ask Curator on WhatsApp →
             </a>

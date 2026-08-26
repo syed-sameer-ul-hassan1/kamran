@@ -89,7 +89,7 @@ export default function ContactPage() {
               className="btn btn-primary btn-large"
               target="_blank"
               rel="noopener noreferrer"
-              href={WHATSAPP_LINK}
+              href={whatsappLink}
             >
               Direct WhatsApp Chat →
             </a>
@@ -159,37 +159,41 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="weave-picker-section">
-                <label className="picker-label">Select Shawl / Weave Canvas:</label>
-                <div className="weave-picker-grid">
-                  {PRODUCTS.slice(0, 4).map((p) => (
-                    <div
-                      key={p.id}
-                      className={`weave-chip ${selectedProduct.id === p.id ? 'active' : ''}`}
-                      onClick={() => handleShawlSelect(p)}
-                    >
-                      <div className="chip-visual-mini">
-                        <CardVisual type={p.visual} />
+              {products && products.length > 0 && (
+                <div className="weave-picker-section">
+                  <label className="picker-label">Select Shawl / Weave Canvas:</label>
+                  <div className="weave-picker-grid">
+                    {products.slice(0, 4).map((p) => (
+                      <div
+                        key={p.id}
+                        className={`weave-chip ${selectedProduct?.id === p.id ? 'active' : ''}`}
+                        onClick={() => handleShawlSelect(p)}
+                      >
+                        <div className="chip-visual-mini">
+                          <CardVisual type={p.visual || 'pashmina'} />
+                        </div>
+                        <div className="chip-meta">
+                          <strong>{p.name}</strong>
+                          <span className="chip-price">{p.price}</span>
+                        </div>
                       </div>
-                      <div className="chip-meta">
-                        <strong>{p.name}</strong>
-                        <span className="chip-price">{p.price}</span>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="selected-weave-bar">
-                <div className="swb-details">
-                  <span className="swb-tag">{selectedProduct.tag}</span>
-                  <span className="swb-title">{selectedProduct.name}</span>
-                  <span className="swb-specs">
-                    {selectedProduct.dimensions} • {selectedProduct.weight} • {selectedProduct.origin}
-                  </span>
+              {selectedProduct && selectedProduct.name && (
+                <div className="selected-weave-bar">
+                  <div className="swb-details">
+                    <span className="swb-tag">{selectedProduct.tag}</span>
+                    <span className="swb-title">{selectedProduct.name}</span>
+                    <span className="swb-specs">
+                      {selectedProduct.dimensions} • {selectedProduct.weight} • {selectedProduct.origin}
+                    </span>
+                  </div>
+                  <div className="swb-price-badge">{selectedProduct.price}</div>
                 </div>
-                <div className="swb-price-badge">{selectedProduct.price}</div>
-              </div>
+              )}
 
               <form onSubmit={handleInquirySubmit} className="atelier-form">
                 <div className="form-row">

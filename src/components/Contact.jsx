@@ -1,7 +1,9 @@
 import { LocationIcon, PhoneIcon, MailIcon, InstagramIcon } from './Icons';
-import { WHATSAPP_LINK } from '../data';
+import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function Contact() {
+  const { settings, whatsappLink } = useStorefrontData();
+
   return (
     <section className="contact" id="contact">
       <div className="wrap contact-grid">
@@ -17,12 +19,12 @@ export default function Contact() {
             <a
               className="btn btn-primary"
               target="_blank"
-              rel="noopener"
-              href={WHATSAPP_LINK}
+              rel="noopener noreferrer"
+              href={whatsappLink}
             >
               Message on WhatsApp
             </a>
-            <a className="btn btn-ghost" href="tel:+923002121224">
+            <a className="btn btn-ghost" href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>
               Call Us
             </a>
           </div>
@@ -33,22 +35,22 @@ export default function Contact() {
             <LocationIcon />
             <div>
               <span className="lbl">Location</span>
-              <span className="val">Nathia Gali, Pakistan</span>
+              <span className="val">{settings.address || 'Nathia Gali, Pakistan'}</span>
             </div>
           </div>
           <div className="info-row">
             <PhoneIcon />
             <div>
               <span className="lbl">Phone</span>
-              <a href="tel:+923002121224">+92 300 2121224</a> ·{' '}
-              <a href="tel:+923499134377">+92 349 9134377</a>
+              <a href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>{settings.phonePrimary || '+92 300 2121224'}</a> ·{' '}
+              <a href={`tel:${(settings.phoneSecondary || '+923499134377').replace(/\s/g, '')}`}>{settings.phoneSecondary || '+92 349 9134377'}</a>
             </div>
           </div>
           <div className="info-row">
             <MailIcon />
             <div>
               <span className="lbl">Email</span>
-              <a href="mailto:hello@kamranshawls.pk">hello@kamranshawls.pk</a>
+              <a href={`mailto:${settings.email || 'hello@kamranshawls.com.pk'}`}>{settings.email || 'hello@kamranshawls.com.pk'}</a>
             </div>
           </div>
           <div className="info-row">
@@ -56,17 +58,13 @@ export default function Contact() {
             <div>
               <span className="lbl">Instagram</span>
               <a
-                href="https://instagram.com/kamranshawls"
+                href={settings.instagramUrl || 'https://instagram.com/kamranshawls'}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 @kamranshawls
               </a>
             </div>
-          </div>
-          <div className="note-box">
-            This site is a catalogue only — orders are confirmed manually over
-            WhatsApp, call or email. No payment is collected on this website.
           </div>
         </div>
       </div>

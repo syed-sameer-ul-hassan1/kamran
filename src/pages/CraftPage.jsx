@@ -50,7 +50,7 @@ export default function CraftPage() {
               className="btn btn-primary btn-large"
               target="_blank"
               rel="noopener noreferrer"
-              href={WHATSAPP_LINK}
+              href={whatsappLink}
             >
               Inquire on WhatsApp →
             </a>
@@ -208,7 +208,7 @@ export default function CraftPage() {
                   className="btn btn-primary btn-large"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={WHATSAPP_LINK}
+                  href={whatsappLink}
                 >
                   Request Live Weave Video on WhatsApp →
                 </a>
