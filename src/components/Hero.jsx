@@ -7,8 +7,8 @@ export default function Hero() {
   const { hero, products, whatsappLink } = useStorefrontData();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const showcaseProducts = (products && products.length > 0 ? products : []).filter((p) => p.featured || p.inStock).slice(0, 4);
-  const featured = showcaseProducts[currentIndex] || showcaseProducts[0] || (products && products[0]);
+  const showcaseProducts = (products && products.length > 0 ? products : []).filter((p) => Boolean(p.featured));
+  const featured = showcaseProducts[currentIndex] || showcaseProducts[0];
 
   const handlePrev = () => {
     if (showcaseProducts.length <= 1) return;
