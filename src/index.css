@@ -1010,49 +1010,67 @@ header.site-nav.scrolled .burger {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .collection-head {
     flex-direction: row;
     align-items: flex-end;
-    margin-bottom: 38px;
+    margin-bottom: 36px;
   }
 }
 
 .collection-head p {
   color: var(--text-muted);
-  max-width: 44ch;
+  max-width: 46ch;
   margin: 8px 0 0;
   font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .filter-pills {
-  display: flex;
-  gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(36, 29, 27, 0.05);
+  padding: 5px;
+  border-radius: 40px;
+  border: 1px solid var(--line);
   flex-wrap: wrap;
 }
 
 .filter-btn {
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
   color: var(--text-muted);
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 7px 16px;
-  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.22s ease;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+  user-select: none;
 }
 
-.filter-btn.active, .filter-btn:hover {
+.filter-btn:hover:not(.active) {
+  background: rgba(36, 29, 27, 0.07);
+  color: var(--text-dark);
+}
+
+.filter-btn.active {
   background: var(--oxblood);
   border-color: var(--oxblood);
-  color: var(--text-light);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 4px 14px var(--oxblood-glow);
 }
 
 .grid {
@@ -1969,15 +1987,15 @@ header.site-nav.scrolled .burger {
 .controls-bar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 960px) {
   .controls-bar {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 280px 1fr auto;
     align-items: center;
-    justify-content: space-between;
-    gap: 18px;
+    gap: 20px;
   }
 }
 
@@ -1986,10 +2004,9 @@ header.site-nav.scrolled .burger {
   width: 100%;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 960px) {
   .search-wrap {
-    flex: 1;
-    max-width: 300px;
+    max-width: 280px;
   }
 }
 
@@ -1999,74 +2016,66 @@ header.site-nav.scrolled .burger {
   font-family: 'Inter', sans-serif;
   font-size: 0.88rem;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 30px;
   background: #FFFFFF;
   color: var(--text-dark);
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--oxblood);
+  box-shadow: 0 0 0 3px var(--oxblood-glow);
 }
 
 .search-clear-btn {
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
-@media (max-width: 767px) {
-  .controls-bar .filter-pills {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 8px;
-    margin: 0 -10px;
-    padding: 4px 10px 6px;
-    scroll-padding: 0 10px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .controls-bar .filter-pills::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-
-  .controls-bar .filter-btn {
-    flex: none;
-    padding: 8px 14px;
-    font-size: 0.78rem;
-  }
+.controls-bar .filter-pills {
+  justify-content: center;
 }
 
 .sort-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: flex-end;
 }
 
-@media (max-width: 767px) {
-  .sort-wrap {
-    width: 100%;
-    background: var(--cream);
-    padding: 8px 12px;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    justify-content: space-between;
-  }
+.sort-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-weight: 600;
+}
 
-  .sort-select {
-    flex: 1;
-    max-width: none;
-  }
+.sort-select {
+  padding: 8px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.84rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #FFFFFF;
+  color: var(--text-dark);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.sort-select:focus {
+  border-color: var(--oxblood);
 }
 
 @media (min-width: 860px) {
@@ -3520,7 +3529,6 @@ footer.luxury-footer {
   .testimonials-grid,
   .flow-steps-grid,
   .materials-scroll,
-  .controls-bar .filter-pills,
   .atelier-tabs-nav {
     margin-left: -16px !important;
     margin-right: -16px !important;
@@ -3530,6 +3538,53 @@ footer.luxury-footer {
     width: auto !important;
     max-width: calc(100% + 32px) !important;
     box-sizing: border-box;
+  }
+
+  /* Filter Pills on Mobile across Home & Collection Pages */
+  .filter-pills {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 4px 16px 8px !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    margin-bottom: 12px !important;
+    scroll-padding: 0 16px !important;
+    width: auto !important;
+    max-width: calc(100% + 32px) !important;
+    box-sizing: border-box !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .filter-btn {
+    flex: none !important;
+    padding: 8px 16px !important;
+    font-size: 0.8rem !important;
+    border: 1px solid var(--line) !important;
+    background: var(--cream-pure) !important;
+    border-radius: 25px !important;
+    min-height: 38px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  .filter-btn.active {
+    background: var(--oxblood) !important;
+    border-color: var(--oxblood) !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px var(--oxblood-glow) !important;
   }
 
   /* Catalogue Controls on Collection Page */
