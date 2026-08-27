@@ -67,7 +67,7 @@ export default function Hero() {
 
           <div className="hero-cta">
             <Link className="btn btn-gold hero-btn" to="/collection">
-              Explore Collection
+              {hero.ctaText || 'Explore Collection'}
               <span className="btn-arrow">→</span>
             </Link>
             <a
@@ -76,7 +76,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               href={whatsappLink}
             >
-              Enquire on WhatsApp
+              {hero.whatsappCtaText || 'Enquire on WhatsApp'}
             </a>
           </div>
         </div>

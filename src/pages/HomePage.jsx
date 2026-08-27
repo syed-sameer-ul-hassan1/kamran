@@ -6,9 +6,17 @@ import { useStorefrontData } from '../context/StorefrontDataContext';
 import { PhoneIcon, LocationIcon, InstagramIcon, TikTokIcon } from '../components/Icons';
 
 export default function HomePage() {
-  const { products, materials, testimonials, faqs, whatsappLink } = useStorefrontData();
+  const { products, materials, testimonials, faqs, settings, siteContent, whatsappLink } = useStorefrontData();
   const [filter, setFilter] = useState('all');
   const [openFaq, setOpenFaq] = useState(0);
+
+  const pillars = siteContent?.homePillars || {};
+  const collectionSec = siteContent?.homeCollection || {};
+  const matSec = siteContent?.homeMaterials || {};
+  const craftSec = siteContent?.homeCraftBanner || {};
+  const testSec = siteContent?.homeTestimonials || {};
+  const faqSec = siteContent?.homeFaqs || {};
+  const conciergeSec = siteContent?.homeConcierge || {};
 
   const filteredProducts = products.filter((item) => {
     if (filter === 'pashmina') return item.category === 'pashmina' || item.category === 'shatoosh';
@@ -24,24 +32,24 @@ export default function HomePage() {
       <section className="pillars-strip">
         <div className="wrap pillars-grid">
           <div className="pillar-item">
-            <span className="pillar-num">01</span>
+            <span className="pillar-num">{pillars.pillar1Num || '01'}</span>
             <div className="pillar-text">
-              <h4>100% Verified Natural Fibres</h4>
-              <p>Hand-combed Himalayan cashmere, pure Shatoosh, and Swat Valley wool with zero synthetic polyester adulteration.</p>
+              <h4>{pillars.pillar1Title || '100% Verified Natural Fibres'}</h4>
+              <p>{pillars.pillar1Desc || 'Hand-combed Himalayan cashmere, pure Shatoosh, and Swat Valley wool with zero synthetic polyester adulteration.'}</p>
             </div>
           </div>
           <div className="pillar-item">
-            <span className="pillar-num">02</span>
+            <span className="pillar-num">{pillars.pillar2Num || '02'}</span>
             <div className="pillar-text">
-              <h4>4-Point In-Store Quality Check</h4>
-              <p>Every fringe, warp tension, and border pattern is personally verified in Nathia Gali before leaving our boutique.</p>
+              <h4>{pillars.pillar2Title || '4-Point In-Store Quality Check'}</h4>
+              <p>{pillars.pillar2Desc || 'Every fringe, warp tension, and border pattern is personally verified in Nathia Gali before leaving our boutique.'}</p>
             </div>
           </div>
           <div className="pillar-item">
-            <span className="pillar-num">03</span>
+            <span className="pillar-num">{pillars.pillar3Num || '03'}</span>
             <div className="pillar-text">
-              <h4>Direct Artisan Concierge</h4>
-              <p>Direct WhatsApp consultation for real-time video previews, drape advice, and Nathia Gali boutique coordinates.</p>
+              <h4>{pillars.pillar3Title || 'Direct Artisan Concierge'}</h4>
+              <p>{pillars.pillar3Desc || 'Direct WhatsApp consultation for real-time video previews, drape advice, and Nathia Gali boutique coordinates.'}</p>
             </div>
           </div>
         </div>
@@ -51,9 +59,9 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head collection-head">
             <div>
-              <span className="eyebrow">The Collection</span>
-              <h2>Signature weaves, crafted to endure for generations</h2>
-              <p>Explore our curated seasonal selection of authentic mountain shawls, wraps, and ceremonial chadars.</p>
+              <span className="eyebrow">{collectionSec.eyebrow || 'The Collection'}</span>
+              <h2>{collectionSec.title || 'Signature weaves, crafted to endure for generations'}</h2>
+              <p>{collectionSec.desc || 'Explore our curated seasonal selection of authentic mountain shawls, wraps, and ceremonial chadars.'}</p>
             </div>
             
             <div className="filter-pills">
@@ -62,28 +70,28 @@ export default function HomePage() {
                 className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
                 onClick={() => setFilter('all')}
               >
-                All Featured ({products.length})
+                {collectionSec.filterAll || 'All Featured'} ({products.length})
               </button>
               <button
                 type="button"
                 className={`filter-btn ${filter === 'pashmina' ? 'active' : ''}`}
                 onClick={() => setFilter('pashmina')}
               >
-                Pashmina & Shatoosh
+                {collectionSec.filterPashmina || 'Pashmina & Shatoosh'}
               </button>
               <button
                 type="button"
                 className={`filter-btn ${filter === 'wool' ? 'active' : ''}`}
                 onClick={() => setFilter('wool')}
               >
-                Swati & Merino Wool
+                {collectionSec.filterWool || 'Swati & Merino Wool'}
               </button>
               <button
                 type="button"
                 className={`filter-btn ${filter === 'silk' ? 'active' : ''}`}
                 onClick={() => setFilter('silk')}
               >
-                Silk & Cotton
+                {collectionSec.filterSilk || 'Silk & Cotton'}
               </button>
             </div>
           </div>
@@ -91,10 +99,10 @@ export default function HomePage() {
           {filteredProducts.length === 0 ? (
             <div className="empty-curation-card">
               <h3>
-                Seasonal Weaves Being Curated
+                {collectionSec.emptyTitle || 'Seasonal Weaves Being Curated'}
               </h3>
               <p>
-                Our master artisans are currently finishing new heirloom weaves in Nathia Gali. Contact our curator directly on WhatsApp for real-time boutique stock.
+                {collectionSec.emptyDesc || 'Our master artisans are currently finishing new heirloom weaves in Nathia Gali. Contact our curator directly on WhatsApp for real-time boutique stock.'}
               </p>
               <a
                 href={whatsappLink}
@@ -102,7 +110,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="btn btn-primary btn-large"
               >
-                Enquire Available Stock on WhatsApp →
+                {collectionSec.emptyCta || 'Enquire Available Stock on WhatsApp →'}
               </a>
             </div>
           ) : (
@@ -121,7 +129,7 @@ export default function HomePage() {
 
           <div className="collection-cta-wrap">
             <Link to="/collection" className="btn btn-primary btn-large">
-              Browse Complete Catalogue & Custom Pieces →
+              {collectionSec.browseAllCta || 'Browse Complete Catalogue & Custom Pieces →'}
             </Link>
           </div>
         </div>
@@ -131,10 +139,10 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head">
             <div>
-              <span className="eyebrow">Fiber Knowledge</span>
-              <h2>Understanding mountain wools & weaves</h2>
+              <span className="eyebrow">{matSec.eyebrow || 'Fiber Knowledge'}</span>
+              <h2>{matSec.title || 'Understanding mountain wools & weaves'}</h2>
             </div>
-            <p>Every natural fleece offers unique warmth, tactile softness, and draping weight.</p>
+            <p>{matSec.desc || 'Every natural fleece offers unique warmth, tactile softness, and draping weight.'}</p>
           </div>
 
           <div className="mobile-scroll-hint">
@@ -185,48 +193,46 @@ export default function HomePage() {
         <div className="wrap">
           <div className="craft-banner-card">
             <div className="craft-banner-content">
-              <span className="eyebrow on-dark">Artisan Heritage</span>
-              <h2>A boutique built on knowing true handloom purity</h2>
+              <span className="eyebrow on-dark">{craftSec.eyebrow || 'Artisan Heritage'}</span>
+              <h2>{craftSec.title || 'A boutique built on knowing true handloom purity'}</h2>
               <p className="craft-lead">
-                Kamran Shawls was established in the hills of Nathia Gali with an uncompromising standard: 
-                travel directly to the master weavers across Kashmir, Swat, and Northern Valleys 
-                to select each piece rather than trading in mass machine-made replicas.
+                {craftSec.lead || 'Kamran Shawls was established in the hills of Nathia Gali with an uncompromising standard: travel directly to the master weavers across Kashmir, Swat, and Northern Valleys to select each piece rather than trading in mass machine-made replicas.'}
               </p>
 
               <div className="craft-timeline-mini">
                 <div className="mini-step">
                   <span className="step-badge">1</span>
                   <div>
-                    <strong>Direct Mountain Sourcing</strong>
-                    <p>Visiting remote weavers & family handlooms directly</p>
+                    <strong>{craftSec.step1Title || 'Direct Mountain Sourcing'}</strong>
+                    <p>{craftSec.step1Desc || 'Visiting remote weavers & family handlooms directly'}</p>
                   </div>
                 </div>
                 <div className="mini-step">
                   <span className="step-badge">2</span>
                   <div>
-                    <strong>Fiber Grade Selection</strong>
-                    <p>Screening micron count & natural warp elasticity</p>
+                    <strong>{craftSec.step2Title || 'Fiber Grade Selection'}</strong>
+                    <p>{craftSec.step2Desc || 'Screening micron count & natural warp elasticity'}</p>
                   </div>
                 </div>
                 <div className="mini-step">
                   <span className="step-badge">3</span>
                   <div>
-                    <strong>In-Store Thread Audit</strong>
-                    <p>Testing weft density & hand-twisted border fringes</p>
+                    <strong>{craftSec.step3Title || 'In-Store Thread Audit'}</strong>
+                    <p>{craftSec.step3Desc || 'Testing weft density & hand-twisted border fringes'}</p>
                   </div>
                 </div>
                 <div className="mini-step">
                   <span className="step-badge">4</span>
                   <div>
-                    <strong>Cedar Packaging</strong>
-                    <p>Hand-pressed in protective covers for tracked transit</p>
+                    <strong>{craftSec.step4Title || 'Cedar Packaging'}</strong>
+                    <p>{craftSec.step4Desc || 'Hand-pressed in protective covers for tracked transit'}</p>
                   </div>
                 </div>
               </div>
 
               <div className="craft-btn-row">
                 <Link to="/craft" className="btn btn-gold btn-large">
-                  Explore Full Craftsmanship Journey →
+                  {craftSec.ctaText || 'Explore Full Craftsmanship Journey →'}
                 </Link>
               </div>
             </div>
@@ -238,9 +244,9 @@ export default function HomePage() {
         <section className="testimonials-section">
           <div className="wrap">
             <div className="section-head text-center" style={{ margin: '0 auto 36px', textAlign: 'center', maxWidth: '650px' }}>
-              <span className="eyebrow">Patron Testimonials</span>
-              <h2>Worn by discerning patrons across Pakistan</h2>
-              <p>Read what our clients from Islamabad, Lahore, Karachi, and abroad say about our weaves.</p>
+              <span className="eyebrow">{testSec.eyebrow || 'Patron Testimonials'}</span>
+              <h2>{testSec.title || 'Worn by discerning patrons across Pakistan'}</h2>
+              <p>{testSec.desc || 'Read what our clients from Islamabad, Lahore, Karachi, and abroad say about our weaves.'}</p>
             </div>
 
             <div className="mobile-scroll-hint">
@@ -268,10 +274,10 @@ export default function HomePage() {
           <div className="wrap">
             <div className="section-head" style={{ marginBottom: '32px' }}>
               <div>
-                <span className="eyebrow">Client Support</span>
-                <h2>Frequently asked questions</h2>
+                <span className="eyebrow">{faqSec.eyebrow || 'Client Support'}</span>
+                <h2>{faqSec.title || 'Frequently asked questions'}</h2>
               </div>
-              <p>Everything you need to know about our ordering process, purity testing, and care guidelines.</p>
+              <p>{faqSec.desc || 'Everything you need to know about our ordering process, purity testing, and care guidelines.'}</p>
             </div>
 
             <div className="faqs-accordion">
@@ -302,16 +308,14 @@ export default function HomePage() {
           <div className="concierge-luxury-frame">
             <div className="concierge-grid">
               <div className="concierge-intro">
-                <span className="eyebrow on-dark">Personal Concierge</span>
+                <span className="eyebrow on-dark">{conciergeSec.eyebrow || 'Personal Concierge'}</span>
 
                 <h2 className="concierge-heading">
-                  Enquire directly with our Nathia Gali store
+                  {conciergeSec.title || 'Enquire directly with our Nathia Gali store'}
                 </h2>
 
                 <p className="concierge-desc">
-                  Have questions about weave weights, shades, or custom gifting? 
-                  Message us directly on WhatsApp for real-time video previews, 
-                  high-resolution fabric texture photos, and boutique reservations in Nathia Gali.
+                  {conciergeSec.desc || 'Have questions about weave weights, shades, or custom gifting? Message us directly on WhatsApp for real-time video previews, high-resolution fabric texture photos, and boutique reservations in Nathia Gali.'}
                 </p>
 
                 <div className="concierge-cta-group">
@@ -321,12 +325,12 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                     href={whatsappLink}
                   >
-                    Chat with Curator on WhatsApp →
+                    {conciergeSec.whatsappCta || 'Chat with Curator on WhatsApp →'}
                   </a>
 
-                  <a className="btn btn-ghost on-dark btn-large concierge-call-btn" href="tel:+923002121224">
+                  <a className="btn btn-ghost on-dark btn-large concierge-call-btn" href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}>
                     <PhoneIcon />
-                    <span>Call: +92 300 2121224</span>
+                    <span>{conciergeSec.callCta || `Call: ${settings.phonePrimary || '+92 300 2121224'}`}</span>
                   </a>
                 </div>
               </div>
@@ -337,14 +341,14 @@ export default function HomePage() {
                     <LocationIcon />
                   </div>
                   <div className="c-card-info">
-                    <span className="c-card-label">Shop Location</span>
-                    <h4 className="c-card-title">Nathia Gali, Khyber Pakhtunkhwa</h4>
-                    <p className="c-card-sub">Main Bazaar boutique • Open for in-person consultations</p>
+                    <span className="c-card-label">{conciergeSec.shopLabel || 'Shop Location'}</span>
+                    <h4 className="c-card-title">{conciergeSec.shopTitle || 'Nathia Gali, Khyber Pakhtunkhwa'}</h4>
+                    <p className="c-card-sub">{conciergeSec.shopSub || (settings.address ? `${settings.address} • Open for in-person consultations` : 'Main Bazaar boutique • Open for in-person consultations')}</p>
                   </div>
                 </div>
 
                 <a
-                  href="https://instagram.com/kamranshawls"
+                  href={settings.instagramUrl || "https://instagram.com/kamranshawls"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="concierge-card concierge-card-link"
@@ -353,14 +357,14 @@ export default function HomePage() {
                     <InstagramIcon />
                   </div>
                   <div className="c-card-info">
-                    <span className="c-card-label">Instagram Portfolio</span>
-                    <h4 className="c-card-title">@kamranshawls</h4>
-                    <p className="c-card-sub">New weave drops, video showcases & customer stories →</p>
+                    <span className="c-card-label">{conciergeSec.instaLabel || 'Instagram Portfolio'}</span>
+                    <h4 className="c-card-title">{conciergeSec.instaTitle || '@kamranshawls'}</h4>
+                    <p className="c-card-sub">{conciergeSec.instaSub || 'New weave drops, video showcases & customer stories →'}</p>
                   </div>
                 </a>
 
                 <a
-                  href="https://tiktok.com/@kamranshawls"
+                  href={settings.tiktokUrl || "https://tiktok.com/@kamranshawls"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="concierge-card concierge-card-link c-card-highlight"
@@ -369,10 +373,10 @@ export default function HomePage() {
                     <TikTokIcon />
                   </div>
                   <div className="c-card-info">
-                    <span className="c-card-label">TikTok Official</span>
-                    <h4 className="c-card-title">@kamranshawls</h4>
+                    <span className="c-card-label">{conciergeSec.tiktokLabel || 'TikTok Official'}</span>
+                    <h4 className="c-card-title">{conciergeSec.tiktokTitle || '@kamranshawls'}</h4>
                     <p className="c-card-sub">
-                      Artisan loom weaving videos, drape demonstrations & live broadcasts →
+                      {conciergeSec.tiktokSub || 'Artisan loom weaving videos, drape demonstrations & live broadcasts →'}
                     </p>
                   </div>
                 </a>

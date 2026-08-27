@@ -3,7 +3,17 @@ import { GUIDES } from '../data/guidesData';
 import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function GuidesPage() {
-  const { whatsappLink } = useStorefrontData();
+  const { siteContent, whatsappLink } = useStorefrontData();
+
+  const gContent = siteContent?.guidesPage || {};
+  const heroTitle = gContent.heroTitle || 'The Weave Knowledge & Heritage Guides';
+  const heroLede = gContent.heroLede || 'Expert educational guides by Kamran Shawls curators in Nathia Gali. Learn how to identify authentic Himalayan Pashmina, understand micron counts, and style traditional Swati chadars.';
+  const heroBtn1 = gContent.heroBtn1 || 'Explore Our Collection →';
+  const heroBtn2 = gContent.heroBtn2 || 'Ask Curator on WhatsApp →';
+  const hubEyebrow = gContent.hubEyebrow || 'Curator Knowledge Hub';
+  const hubTitle = gContent.hubTitle || 'Educational Articles & Verification Guides';
+  const hubDesc = gContent.hubDesc || 'Essential reading for collectors, patrons, and connoisseurs of genuine mountain handlooms.';
+
   return (
     <>
       <section className="page-hero page-hero-full">
@@ -29,18 +39,22 @@ export default function GuidesPage() {
 
         <div className="wrap page-hero-inner">
           <h1 className="page-hero-title">
-            The Weave Knowledge <em>& Heritage Guides</em>
+            {heroTitle.includes('& Heritage Guides') ? (
+              <>
+                {heroTitle.split('& Heritage Guides')[0]} <em>& Heritage Guides</em>
+              </>
+            ) : (
+              heroTitle
+            )}
           </h1>
 
           <p className="page-hero-lede">
-            Expert educational guides by Kamran Shawls curators in Nathia Gali. 
-            Learn how to identify authentic Himalayan Pashmina, understand micron counts, 
-            and style traditional Swati chadars.
+            {heroLede}
           </p>
 
           <div className="page-hero-cta">
             <Link to="/collection" className="btn btn-gold btn-large">
-              Explore Our Collection →
+              {heroBtn1}
             </Link>
             <a
               className="btn btn-primary btn-large"
@@ -48,7 +62,7 @@ export default function GuidesPage() {
               rel="noopener noreferrer"
               href={whatsappLink}
             >
-              Ask Curator on WhatsApp →
+              {heroBtn2}
             </a>
           </div>
         </div>
@@ -58,10 +72,10 @@ export default function GuidesPage() {
         <div className="wrap">
           <div className="section-head" style={{ marginBottom: '40px' }}>
             <div>
-              <span className="eyebrow">Curator Knowledge Hub</span>
-              <h2>Educational Articles & Verification Guides</h2>
+              <span className="eyebrow">{hubEyebrow}</span>
+              <h2>{hubTitle}</h2>
             </div>
-            <p>Essential reading for collectors, patrons, and connoisseurs of genuine mountain handlooms.</p>
+            <p>{hubDesc}</p>
           </div>
 
           <div className="guides-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '28px' }}>

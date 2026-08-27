@@ -3,10 +3,17 @@ import ProductCard from '../components/ProductCard';
 import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function CollectionPage() {
-  const { products, whatsappLink } = useStorefrontData();
+  const { products, siteContent, whatsappLink } = useStorefrontData();
   const [selectedCat, setSelectedCat] = useState('all');
   const [sortOrder, setSortOrder] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const colContent = siteContent?.collectionPage || {};
+  const heroTitle = colContent.heroTitle || 'The Complete Shawl Collection';
+  const heroLede = colContent.heroLede || 'Explore our curated inventory of virgin Pashmina, Royal Shatoosh, Swati ceremonial mountain chadars, and fine evening silk stoles. Each weave is individually inspected for purity, texture, and authentic warmth in our Nathia Gali boutique.';
+  const browseBtnText = (colContent.heroBrowseBtn || 'Browse Catalogue ({count} Weaves) ↓').replace('{count}', products.length);
+  const waBtnText = colContent.heroWaBtn || 'Inquire on WhatsApp →';
+  const searchPlaceholder = colContent.searchPlaceholder || 'Search by weave, fabric, or origin...';
 
   let displayProducts = products.filter((item) => {
     const matchesCat =
@@ -67,18 +74,22 @@ export default function CollectionPage() {
 
         <div className="wrap page-hero-inner">
           <h1 className="page-hero-title">
-            The Complete Shawl <em>Collection</em>
+            {heroTitle.includes('Collection') ? (
+              <>
+                {heroTitle.split('Collection')[0]} <em>Collection</em>
+              </>
+            ) : (
+              heroTitle
+            )}
           </h1>
 
           <p className="page-hero-lede">
-            Explore our curated inventory of virgin Pashmina, Royal Shatoosh,
-            Swati ceremonial mountain chadars, and fine evening silk stoles. Each weave is individually
-            inspected for purity, texture, and authentic warmth in our Nathia Gali boutique.
+            {heroLede}
           </p>
 
           <div className="page-hero-cta">
             <button type="button" onClick={scrollToCatalogue} className="btn btn-gold btn-large">
-              Browse Catalogue ({products.length} Weaves) ↓
+              {browseBtnText}
             </button>
             <a
               className="btn btn-primary btn-large"
@@ -86,7 +97,7 @@ export default function CollectionPage() {
               rel="noopener noreferrer"
               href={whatsappLink}
             >
-              Inquire on WhatsApp →
+              {waBtnText}
             </a>
           </div>
         </div>
@@ -108,7 +119,7 @@ export default function CollectionPage() {
             <div className="search-wrap">
               <input
                 type="text"
-                placeholder="Search by weave, fabric, or origin..."
+                placeholder={searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="search-input"

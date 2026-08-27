@@ -12,11 +12,20 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const { whatsappLink } = useStorefrontData();
+  const { whatsappLink, settings, siteContent } = useStorefrontData();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const navContent = siteContent?.navbar || {};
+  const brandName = navContent.brandName || settings.siteName || 'Kamran Shawls';
+  const ctaText = navContent.ctaText || 'Enquire on WhatsApp';
+  const mobileCtaWhatsapp = navContent.mobileCtaWhatsapp || 'Chat with Curator on WhatsApp →';
+  const mobileCtaCall = navContent.mobileCtaCall || `Call: ${settings.phonePrimary || '+92 300 2121224'}`;
+  const mobileBoutiqueTitle = navContent.mobileBoutiqueTitle || 'Nathia Gali Boutique';
+  const mobileBoutiqueSub = navContent.mobileBoutiqueSub || 'Main Bazaar • Khyber Pakhtunkhwa';
+  const navLinks = navContent.navLinks || NAV_LINKS;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,16 +68,16 @@ export default function Navbar() {
           <Link className="brand" to="/">
             <img
               src={(scrolled || isLightPage) ? '/logo-default.svg' : '/logo-dark.svg'}
-              alt="Kamran Shawls Logo"
+              alt={`${brandName} Logo`}
               className="brand-logo"
               width="32"
               height="32"
             />
-            Kamran Shawls
+            {brandName}
           </Link>
 
           <nav className="links">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
@@ -85,7 +94,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             href={whatsappLink}
           >
-            Enquire on WhatsApp
+            {ctaText}
           </a>
 
           <button
@@ -105,12 +114,12 @@ export default function Navbar() {
             <Link className="brand brand-light" to="/" onClick={() => setMenuOpen(false)}>
               <img
                 src="/logo-dark.svg"
-                alt="Kamran Shawls Logo"
+                alt={`${brandName} Logo`}
                 className="brand-logo"
                 width="32"
                 height="32"
               />
-              Kamran Shawls
+              {brandName}
             </Link>
 
             <button
@@ -125,7 +134,7 @@ export default function Navbar() {
 
           <div className="mobile-nav-body">
             <nav className="mobile-nav-links">
-              {NAV_LINKS.map((link, idx) => {
+              {navLinks.map((link, idx) => {
                 const isActive = location.pathname === link.to;
                 return (
                   <Link
@@ -151,24 +160,24 @@ export default function Navbar() {
                   href={whatsappLink}
                   onClick={() => setMenuOpen(false)}
                 >
-                  Chat with Curator on WhatsApp →
+                  {mobileCtaWhatsapp}
                 </a>
                 <a
                   className="btn btn-ghost on-dark btn-large m-nav-btn"
-                  href="tel:+923002121224"
+                  href={`tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`}
                 >
-                  Call: +92 300 2121224
+                  {mobileCtaCall}
                 </a>
               </div>
 
               <div className="m-nav-meta">
                 <div className="m-nav-loc">
-                  <strong>Nathia Gali Boutique</strong>
-                  <p>Main Bazaar • Khyber Pakhtunkhwa</p>
+                  <strong>{mobileBoutiqueTitle}</strong>
+                  <p>{mobileBoutiqueSub}</p>
                 </div>
                 <div className="m-nav-socials">
                   <a
-                    href="https://instagram.com/kamranshawls"
+                    href={settings.instagramUrl || "https://instagram.com/kamranshawls"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -176,7 +185,7 @@ export default function Navbar() {
                   </a>
                   <span>•</span>
                   <a
-                    href="https://tiktok.com/@kamranshawls"
+                    href={settings.tiktokUrl || "https://tiktok.com/@kamranshawls"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

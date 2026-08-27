@@ -1,7 +1,23 @@
 import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function CraftPage() {
-  const { craftSteps, whatsappLink } = useStorefrontData();
+  const { craftSteps, siteContent, whatsappLink } = useStorefrontData();
+
+  const craftContent = siteContent?.craftPage || {};
+  const heroTitle = craftContent.heroTitle || 'The Ancient Art of Mountain Weaving';
+  const heroLede = craftContent.heroLede || 'Discover the six-stage artisan journey of every Kamran Shawl — from high-altitude Capra Hircus fleeces to traditional wooden handlooms, natural botanical dyeing, and rigorous 4-point in-store audits in Nathia Gali.';
+  const heroBtn1 = craftContent.heroBtn1 || 'Explore 6-Stage Process ↓';
+  const heroBtn2 = craftContent.heroBtn2 || 'Inquire on WhatsApp →';
+  const journeyEyebrow = craftContent.journeyEyebrow || 'The 6-Stage Journey';
+  const journeyTitle = craftContent.journeyTitle || 'How a raw mountain fleece becomes an heirloom';
+  const journeyDesc = craftContent.journeyDesc || 'We believe in slow craftsmanship. No synthetic shortcuts, no automated factory speeds.';
+  const comparisonEyebrow = craftContent.comparisonEyebrow || 'Authenticity Comparison';
+  const comparisonTitle = craftContent.comparisonTitle || 'Why authentic handlooms surpass powerlooms';
+  const comparisonDesc = craftContent.comparisonDesc || 'Understand the critical structural differences between master handlooms and industrial mass production.';
+  const inspectionEyebrow = craftContent.inspectionEyebrow || 'Quality Assurance';
+  const inspectionTitle = craftContent.inspectionTitle || 'The 4-point in-store inspection protocol';
+  const inspectionDesc = craftContent.inspectionDesc || 'Before any shawl is placed on our shelves in Nathia Gali or dispatched to a client, our senior curator performs a comprehensive quality audit:';
+  const inspectionCta = craftContent.inspectionCta || 'Request Live Weave Video on WhatsApp →';
 
   const scrollToSteps = () => {
     const el = document.getElementById('craft-journey');
@@ -33,18 +49,22 @@ export default function CraftPage() {
 
         <div className="wrap page-hero-inner">
           <h1 className="page-hero-title">
-            The Ancient Art of <em>Mountain Weaving</em>
+            {heroTitle.includes('Mountain Weaving') ? (
+              <>
+                {heroTitle.split('Mountain Weaving')[0]} <em>Mountain Weaving</em>
+              </>
+            ) : (
+              heroTitle
+            )}
           </h1>
 
           <p className="page-hero-lede">
-            Discover the six-stage artisan journey of every Kamran Shawl — from high-altitude 
-            Capra Hircus fleeces to traditional wooden handlooms, natural botanical dyeing, 
-            and rigorous 4-point in-store audits in Nathia Gali.
+            {heroLede}
           </p>
 
           <div className="page-hero-cta">
             <button type="button" onClick={scrollToSteps} className="btn btn-gold btn-large">
-              Explore 6-Stage Process ↓
+              {heroBtn1}
             </button>
             <a
               className="btn btn-primary btn-large"
@@ -52,7 +72,7 @@ export default function CraftPage() {
               rel="noopener noreferrer"
               href={whatsappLink}
             >
-              Inquire on WhatsApp →
+              {heroBtn2}
             </a>
           </div>
         </div>
@@ -72,10 +92,10 @@ export default function CraftPage() {
         <div className="wrap">
           <div className="section-head">
             <div>
-              <span className="eyebrow">The 6-Stage Journey</span>
-              <h2>How a raw mountain fleece becomes an heirloom</h2>
+              <span className="eyebrow">{journeyEyebrow}</span>
+              <h2>{journeyTitle}</h2>
             </div>
-            <p>We believe in slow craftsmanship. No synthetic shortcuts, no automated factory speeds.</p>
+            <p>{journeyDesc}</p>
           </div>
 
           <div className="mobile-scroll-hint">
@@ -109,10 +129,10 @@ export default function CraftPage() {
         <div className="wrap">
           <div className="section-head">
             <div>
-              <span className="eyebrow">Authenticity Comparison</span>
-              <h2>Why authentic handlooms surpass powerlooms</h2>
+              <span className="eyebrow">{comparisonEyebrow}</span>
+              <h2>{comparisonTitle}</h2>
             </div>
-            <p>Understand the critical structural differences between master handlooms and industrial mass production.</p>
+            <p>{comparisonDesc}</p>
           </div>
 
           <div className="comparison-table-wrap">
@@ -165,11 +185,10 @@ export default function CraftPage() {
         <div className="wrap">
           <div className="inspection-card">
             <div className="inspection-content">
-              <span className="eyebrow on-dark">Quality Assurance</span>
-              <h2>The 4-point in-store inspection protocol</h2>
+              <span className="eyebrow on-dark">{inspectionEyebrow}</span>
+              <h2>{inspectionTitle}</h2>
               <p>
-                Before any shawl is placed on our shelves in Nathia Gali or dispatched to a client, 
-                our senior curator performs a comprehensive quality audit:
+                {inspectionDesc}
               </p>
               
               <div className="inspection-grid">
@@ -210,7 +229,7 @@ export default function CraftPage() {
                   rel="noopener noreferrer"
                   href={whatsappLink}
                 >
-                  Request Live Weave Video on WhatsApp →
+                  {inspectionCta}
                 </a>
               </div>
             </div>

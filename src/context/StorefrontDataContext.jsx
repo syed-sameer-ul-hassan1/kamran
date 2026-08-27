@@ -8,6 +8,7 @@ import {
   FAQS as DEFAULT_FAQS,
   WHATSAPP_LINK as DEFAULT_WHATSAPP
 } from '../data';
+import { DEFAULT_SITE_CONTENT } from '../data/defaultSiteContent';
 
 const StorefrontDataContext = createContext();
 
@@ -30,6 +31,7 @@ export function StorefrontDataProvider({ children }) {
     title: 'Shawls chosen carefully, worn for years',
     lede: 'Kamran Shawls curates authentic hand-finished Pashmina, Shatoosh and Swati weaves directly from master artisans. Every piece is individually inspected in-store for thread density, finish, and authentic warmth.'
   });
+  const [siteContent, setSiteContent] = useState(DEFAULT_SITE_CONTENT);
 
   const fetchLiveSupabaseData = async () => {
     try {
@@ -40,7 +42,8 @@ export function StorefrontDataProvider({ children }) {
         materialsRes,
         craftRes,
         testimonialsRes,
-        faqsRes
+        faqsRes,
+        siteContentRes
       ] = await Promise.all([
         supabase.from('products').select('*').order('created_at', { ascending: false }),
         supabase.from('settings').select('*').eq('id', 'main').maybeSingle(),
@@ -48,7 +51,8 @@ export function StorefrontDataProvider({ children }) {
         supabase.from('materials').select('*').order('sort_order', { ascending: true }),
         supabase.from('craft_steps').select('*').order('sort_order', { ascending: true }),
         supabase.from('testimonials').select('*').order('created_at', { ascending: false }),
-        supabase.from('faqs').select('*').order('sort_order', { ascending: true })
+        supabase.from('faqs').select('*').order('sort_order', { ascending: true }),
+        supabase.from('site_content').select('*').eq('id', 'main').maybeSingle()
       ]);
 
       if (productsRes.data) {
@@ -143,6 +147,13 @@ export function StorefrontDataProvider({ children }) {
           answer: f.answer
         })));
       }
+
+      if (siteContentRes.data && siteContentRes.data.data) {
+        setSiteContent({
+          ...DEFAULT_SITE_CONTENT,
+          ...siteContentRes.data.data
+        });
+      }
     } catch (err) {
       console.warn('Live data fetch failed, using fallback data:', err);
     }
@@ -184,6 +195,7 @@ export function StorefrontDataProvider({ children }) {
         faqs,
         settings,
         hero,
+        siteContent: siteContent || DEFAULT_SITE_CONTENT,
         whatsappLink,
         submitInquiry,
         refreshData: fetchLiveSupabaseData

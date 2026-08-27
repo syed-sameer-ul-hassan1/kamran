@@ -4,8 +4,22 @@ import { useStorefrontData } from '../context/StorefrontDataContext';
 import { CardVisual } from '../components/ProductCard';
 
 export default function ContactPage() {
-  const { products, settings, whatsappLink, submitInquiry } = useStorefrontData();
+  const { products, settings, siteContent, whatsappLink, submitInquiry } = useStorefrontData();
   const [activeTab, setActiveTab] = useState('video-preview');
+
+  const contactContent = siteContent?.contactPage || {};
+  const heroTitle = contactContent.heroTitle || 'Private Boutique & Personal Concierge';
+  const heroLede = contactContent.heroLede || 'Step into our personal consultation salon. Whether requesting real-time video texture audits, custom bridal heirlooms, or planning a visit to our historic Nathia Gali store, our master curators connect with you directly.';
+  const heroBtn1 = contactContent.heroBtn1 || 'Start Curator Consultation ↓';
+  const suiteEyebrow = contactContent.suiteEyebrow || 'Direct Atelier Access';
+  const suiteTitle = contactContent.suiteTitle || 'Personalized Curator Consultation';
+  const tab1Title = contactContent.tab1Title || 'Live Video & Fabric Photos';
+  const tab1Subtitle = contactContent.tab1Subtitle || 'Choose a weave below. We will record a 4K video preview and close-up texture photos directly from our boutique shelves.';
+  const tab2Title = contactContent.tab2Title || 'Bespoke Bridal & Gifting';
+  const tab2Subtitle = contactContent.tab2Subtitle || 'Discuss matching family sets, custom vegetable dyeing, monogramming, and handcrafted velvet-lined gift chests.';
+  const tab3Title = contactContent.tab3Title || 'Nathia Gali Store Visit';
+  const tab3Subtitle = contactContent.tab3Subtitle || 'Visiting Nathia Gali? Let our curators prepare your preferred weaves and private reserve pieces prior to arrival.';
+  const formSubmitBtn = contactContent.formSubmitBtn || 'Send WhatsApp Inquiry →';
 
   const featuredProducts = (products && products.length > 0 ? products : []).filter((p) => Boolean(p.featured));
   const [selectedProduct, setSelectedProduct] = useState(
@@ -85,18 +99,22 @@ export default function ContactPage() {
 
         <div className="wrap page-hero-inner">
           <h1 className="page-hero-title">
-            Private Boutique & <em>Personal Concierge</em>
+            {heroTitle.includes('Personal Concierge') ? (
+              <>
+                {heroTitle.split('Personal Concierge')[0]} <em>Personal Concierge</em>
+              </>
+            ) : (
+              heroTitle
+            )}
           </h1>
 
           <p className="page-hero-lede">
-            Step into our personal consultation salon. Whether requesting real-time video texture audits, 
-            custom bridal heirlooms, or planning a visit to our historic Nathia Gali store, 
-            our master curators connect with you directly.
+            {heroLede}
           </p>
 
           <div className="page-hero-cta">
             <button type="button" onClick={scrollToSuite} className="btn btn-gold btn-large">
-              Start Curator Consultation ↓
+              {heroBtn1}
             </button>
             <a
               className="btn btn-primary btn-large"
@@ -123,8 +141,8 @@ export default function ContactPage() {
       <section id="consultation-suite" className="atelier-suite-section">
         <div className="wrap">
           <div className="section-head text-center atelier-head">
-            <span className="eyebrow">Direct Atelier Access</span>
-            <h2>Personalized Curator Consultation</h2>
+            <span className="eyebrow">{suiteEyebrow}</span>
+            <h2>{suiteTitle}</h2>
             <p>Select your consultation objective and design your direct WhatsApp inquiry below.</p>
           </div>
 
@@ -134,7 +152,7 @@ export default function ContactPage() {
               className={`atelier-tab-btn ${activeTab === 'video-preview' ? 'active' : ''}`}
               onClick={() => setActiveTab('video-preview')}
             >
-              <span>01. Live Video & Photos</span>
+              <span>01. {tab1Title}</span>
             </button>
 
             <button
@@ -142,7 +160,7 @@ export default function ContactPage() {
               className={`atelier-tab-btn ${activeTab === 'bridal-bespoke' ? 'active' : ''}`}
               onClick={() => setActiveTab('bridal-bespoke')}
             >
-              <span>02. Bespoke Bridal & Gifting</span>
+              <span>02. {tab2Title}</span>
             </button>
 
             <button
@@ -150,7 +168,7 @@ export default function ContactPage() {
               className={`atelier-tab-btn ${activeTab === 'boutique-visit' ? 'active' : ''}`}
               onClick={() => setActiveTab('boutique-visit')}
             >
-              <span>03. Nathia Gali Store Visit</span>
+              <span>03. {tab3Title}</span>
             </button>
           </div>
 
@@ -158,14 +176,14 @@ export default function ContactPage() {
             <div className="atelier-form-panel">
               <div className="atelier-panel-header">
                 <h3>
-                  {activeTab === 'video-preview' && 'Request Live Video & Fabric Audit'}
-                  {activeTab === 'bridal-bespoke' && 'Design Bespoke Wedding & Heirloom Order'}
-                  {activeTab === 'boutique-visit' && 'Book an In-Store Curator Consultation'}
+                  {activeTab === 'video-preview' && tab1Title}
+                  {activeTab === 'bridal-bespoke' && tab2Title}
+                  {activeTab === 'boutique-visit' && tab3Title}
                 </h3>
                 <p>
-                  {activeTab === 'video-preview' && 'Choose a weave below. We will record a 4K video preview and close-up texture photos directly from our boutique shelves.'}
-                  {activeTab === 'bridal-bespoke' && 'Discuss matching family sets, custom vegetable dyeing, monogramming, and handcrafted velvet-lined gift chests.'}
-                  {activeTab === 'boutique-visit' && 'Visiting Nathia Gali? Let our curators prepare your preferred weaves and private reserve pieces prior to arrival.'}
+                  {activeTab === 'video-preview' && tab1Subtitle}
+                  {activeTab === 'bridal-bespoke' && tab2Subtitle}
+                  {activeTab === 'boutique-visit' && tab3Subtitle}
                 </p>
               </div>
 
@@ -268,7 +286,7 @@ export default function ContactPage() {
                   disabled={submitting}
                   className="btn btn-primary btn-full atelier-submit-btn"
                 >
-                  {submitting ? 'Sending Request...' : 'Send WhatsApp Inquiry →'}
+                  {submitting ? 'Sending Request...' : formSubmitBtn}
                 </button>
               </form>
             </div>

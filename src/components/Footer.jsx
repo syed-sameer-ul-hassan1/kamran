@@ -3,7 +3,16 @@ import { LocationIcon, PhoneIcon, MailIcon, InstagramIcon, TikTokIcon } from './
 import { useStorefrontData } from '../context/StorefrontDataContext';
 
 export default function Footer() {
-  const { products, settings, whatsappLink } = useStorefrontData();
+  const { settings, siteContent, whatsappLink } = useStorefrontData();
+
+  const footerContent = siteContent?.footer || {};
+  const brandName = siteContent?.navbar?.brandName || settings.siteName || 'Kamran Shawls';
+  const tagline = footerContent.tagline || settings.tagline || 'Authentic Himalayan handloom weaves, pure Pashmina, Royal Shatoosh, and ceremonial Swati chadars curated in the hill station of Nathia Gali.';
+  const exploreHeading = footerContent.exploreHeading || 'Explore Pages';
+  const boutiqueHeading = footerContent.boutiqueHeading || 'Boutique Location';
+  const disclaimer = footerContent.disclaimer || 'All inquiries and reservations are confirmed directly with our curators via WhatsApp. Visit our Main Bazaar boutique in Nathia Gali to inspect handspun Himalayan weaves in person.';
+  const copyright = footerContent.copyright || `Kamran Shawls Nathia Gali (kamranshawls.com.pk). All rights reserved.`;
+  const bottomNote = footerContent.bottomNote || settings.address || 'Main Bazaar, Nathia Gali, KPK, Pakistan';
 
   return (
     <footer className="luxury-footer">
@@ -12,17 +21,16 @@ export default function Footer() {
           <Link className="footer-brand" to="/">
             <img
               src="/logo-dark.svg"
-              alt="Kamran Shawls Logo"
+              alt={`${brandName} Logo`}
               className="footer-logo"
               width="36"
               height="36"
             />
-            <span>{settings.siteName || 'Kamran Shawls'}</span>
+            <span>{brandName}</span>
           </Link>
 
           <p className="footer-tagline">
-            Authentic Himalayan handloom weaves, pure Pashmina, Royal Shatoosh, 
-            and ceremonial Swati chadars curated in the hill station of Nathia Gali.
+            {tagline}
           </p>
 
           <div className="footer-social-pills">
@@ -51,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-col">
-          <h4 className="footer-heading">Explore Pages</h4>
+          <h4 className="footer-heading">{exploreHeading}</h4>
           <ul className="footer-links-list">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/collection">Collection</Link></li>
@@ -62,7 +70,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-col footer-contact-col">
-          <h4 className="footer-heading">Boutique Location</h4>
+          <h4 className="footer-heading">{boutiqueHeading}</h4>
           
           <div className="f-contact-item">
             <LocationIcon />
@@ -102,16 +110,16 @@ export default function Footer() {
       <div className="wrap footer-disclaimer-wrap">
         <div className="footer-disclaimer-card">
           <p className="f-disc-text">
-            All inquiries and reservations are confirmed directly with our curators via WhatsApp. Visit our Main Bazaar boutique in Nathia Gali to inspect handspun Himalayan weaves in person.
+            {disclaimer}
           </p>
         </div>
       </div>
 
       <div className="footer-bottom-bar">
         <div className="wrap footer-bottom-inner">
-          <p>© {new Date().getFullYear()} Kamran Shawls Nathia Gali (kamranshawls.com.pk). All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {copyright}</p>
           <div className="footer-bottom-note">
-            <span>Main Bazaar, Nathia Gali, KPK, Pakistan</span>
+            <span>{bottomNote}</span>
           </div>
         </div>
       </div>
