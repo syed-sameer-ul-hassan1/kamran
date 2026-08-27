@@ -4434,5 +4434,352 @@ footer.luxury-footer {
   }
 }
 
+/* ==========================================================================
+   Luxury Customer Reviews & Experiences Section (Product Detail Page)
+   ========================================================================== */
+.pdp-reviews-wrap {
+  margin-top: 56px;
+  padding: 36px 32px;
+  background: var(--cream-pure);
+  border: 1px solid rgba(184, 147, 74, 0.22);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(36, 29, 27, 0.04);
+}
 
+.pdp-reviews-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+}
 
+.pdp-reviews-title-group h2 {
+  font-size: 1.55rem;
+  color: var(--text-dark);
+  margin-top: 4px;
+}
+
+.pdp-rating-overview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.pdp-rating-num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.pdp-stars-row {
+  display: flex;
+  gap: 3px;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+
+.pdp-rating-meta {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.pdp-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+}
+
+.pdp-review-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(36, 29, 27, 0.08);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pdp-review-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(184, 147, 74, 0.35);
+  box-shadow: 0 8px 24px rgba(36, 29, 27, 0.06);
+}
+
+.pdp-review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.pdp-verified-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(184, 147, 74, 0.1);
+  color: var(--gold);
+  border: 1px solid rgba(184, 147, 74, 0.25);
+}
+
+.pdp-review-body {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.pdp-review-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid rgba(36, 29, 27, 0.07);
+}
+
+.pdp-patron-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.pdp-patron-loc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pdp-review-empty {
+  text-align: center;
+  padding: 36px 20px;
+  background: rgba(235, 224, 208, 0.3);
+  border: 1px dashed rgba(184, 147, 74, 0.35);
+  border-radius: var(--radius);
+}
+
+.pdp-review-empty h3 {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.pdp-review-empty p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  max-width: 420px;
+  margin: 0 auto 18px;
+}
+
+@media (max-width: 768px) {
+  .pdp-reviews-wrap {
+    padding: 24px 18px;
+    margin-top: 36px;
+  }
+  
+  .pdp-reviews-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pdp-reviews-topbar .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pdp-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Submit Review Page (Luxury Light / Cream Design)
+   ========================================================================== */
+.submit-review-card {
+  background: var(--cream-pure);
+  border: 1px solid rgba(184, 147, 74, 0.25);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(36, 29, 27, 0.06);
+  overflow: hidden;
+}
+
+.submit-review-hero {
+  padding: 28px 32px;
+  background: linear-gradient(180deg, rgba(184, 147, 74, 0.08) 0%, transparent 100%);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.submit-review-hero h1 {
+  font-size: 1.6rem;
+  color: var(--text-dark);
+  margin: 4px 0 0;
+}
+
+.submit-review-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: #FFFFFF;
+  border: 1px solid rgba(184, 147, 74, 0.25);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(36, 29, 27, 0.04);
+}
+
+.submit-review-form {
+  padding: 32px;
+}
+
+.submit-review-form .form-group {
+  margin-bottom: 22px;
+}
+
+.submit-review-form label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 7px;
+}
+
+.submit-review-form input,
+.submit-review-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border: 1px solid rgba(36, 29, 27, 0.18);
+  border-radius: var(--radius);
+  color: var(--text-dark);
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-review-form input:focus,
+.submit-review-form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+.star-picker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px 5px;
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.star-picker-btn:hover {
+  transform: scale(1.18);
+}
+
+/* ==========================================================================
+   Mobile Ergonomics: Button Height, Width & Font Weight (Accurate Screen Fit)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .btn {
+    min-height: 46px;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.015em;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+
+  .btn-sm {
+    min-height: 38px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .btn-large {
+    min-height: 48px;
+    padding: 13px 20px;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .btn-product-order,
+  .btn-product-call {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 13px 18px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .product-square-back-btn {
+    width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    top: 12px !important;
+    left: 12px !important;
+    margin-left: 12px !important;
+    margin-top: 10px !important;
+    margin-bottom: -40px !important;
+    border-radius: 6px !important;
+  }
+
+  .submit-review-hero {
+    padding: 20px 18px;
+  }
+
+  .submit-review-hero h1 {
+    font-size: 1.35rem;
+  }
+
+  .submit-review-form {
+    padding: 20px 18px;
+  }
+
+  .submit-review-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .star-picker-btn {
+    padding: 6px 8px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 420px) {
+  .btn {
+    font-size: 0.84rem;
+    padding: 11px 16px;
+    gap: 6px;
+  }
+
+  .btn-product-order,
+  .btn-product-call {
+    font-size: 0.86rem !important;
+    padding: 12px 14px !important;
+  }
+
+  .btn-sm {
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+}

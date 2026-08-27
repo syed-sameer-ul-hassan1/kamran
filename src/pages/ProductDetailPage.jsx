@@ -2,18 +2,31 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useStorefrontData } from '../context/StorefrontDataContext';
 import { CardVisual } from '../components/ProductCard';
+import { 
+  StarIcon, 
+  ShieldCheckIcon, 
+  SparklesIcon, 
+  CheckIcon, 
+  ArrowLeftIcon, 
+  ArrowRightIcon 
+} from '../components/Icons';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { products, settings, siteContent, whatsappLink } = useStorefrontData();
+  const { products = [], settings = {}, siteContent = {}, testimonials = [], whatsappLink } = useStorefrontData();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const pdContent = siteContent?.productDetailPage || {};
   const orderBtnText = pdContent.orderBtnText || 'Order via WhatsApp';
   const callBtnText = pdContent.callBtnText || 'Call Nathia Gali Boutique';
 
-  const product = products.find((p) => p.id === id || p.id === decodeURIComponent(id));
+  const decodedId = id ? decodeURIComponent(String(id)).trim() : '';
+  const product = (products || []).find((p) => 
+    String(p.id).trim() === String(id).trim() || 
+    String(p.id).trim() === decodedId ||
+    (p.name && p.name.toLowerCase().trim() === decodedId.toLowerCase())
+  );
 
   // If products are loaded and product not found, or redirect fallback
   useEffect(() => {
@@ -30,8 +43,9 @@ export default function ProductDetailPage() {
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.94rem' }}>
             The requested piece may have been updated or archived in our Nathia Gali boutique.
           </p>
-          <Link to="/collection" className="btn btn-primary">
-            ← Browse Full Collection
+          <Link to="/collection" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <ArrowLeftIcon size={16} />
+            <span>Browse Full Collection</span>
           </Link>
         </div>
       </div>
@@ -44,13 +58,27 @@ export default function ProductDetailPage() {
 
   const activeImage = imageList[selectedImageIndex] || imageList[0] || '';
 
-  const orderMessage = `Hi, I would like to order / enquire about the "${product.name}" (${product.price}). Is this piece currently available in stock?`;
+  const orderMessage = `Hi, I would like to order / enquire about the "${product.name}" (${product.price || ''}). Is this piece currently available in stock?`;
   const whatsappUrl = `https://wa.me/${(settings.phonePrimary || '923002121224').replace(/\D/g, '')}?text=${encodeURIComponent(orderMessage)}`;
   const phoneCallUrl = `tel:${(settings.phonePrimary || '+923002121224').replace(/\s/g, '')}`;
 
-  const relatedProducts = products
+  const relatedProducts = (products || [])
     .filter((p) => p.id !== product.id && (p.category === product.category || p.featured))
     .slice(0, 3);
+
+  // Reviews associated with this product
+  const productReviews = (testimonials || []).filter((t) => {
+    if (!t) return false;
+    if (t.productId && String(t.productId) === String(product.id)) return true;
+    if (!t.productId && t.shawl && product.name && t.shawl.toLowerCase().trim() === product.name.toLowerCase().trim()) {
+      return true;
+    }
+    return false;
+  });
+
+  const avgRating = productReviews.length > 0
+    ? (productReviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0) / productReviews.length).toFixed(1)
+    : '5.0';
 
   return (
     <div className="product-detail-page">
@@ -67,10 +95,7 @@ export default function ProductDetailPage() {
         aria-label="Back"
         title="Back"
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12" />
-          <polyline points="12 19 5 12 12 5" />
-        </svg>
+        <ArrowLeftIcon size={20} />
       </button>
 
       <div className="wrap product-main-container">
@@ -223,6 +248,77 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Luxury Customer Reviews & Ratings Section */}
+        <section className="pdp-reviews-wrap">
+          <div className="pdp-reviews-topbar">
+            <div className="pdp-reviews-title-group">
+              <span className="eyebrow">Client Feedback</span>
+              <h2>Patron Reviews & Experiences</h2>
+              <div className="pdp-rating-overview">
+                <span className="pdp-rating-num">{avgRating}</span>
+                <div>
+                  <div className="pdp-stars-row">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <StarIcon key={star} size={15} filled={true} />
+                    ))}
+                  </div>
+                  <div className="pdp-rating-meta">
+                    Based on {productReviews.length} {productReviews.length === 1 ? 'verified review' : 'verified reviews'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              to={`/review/${product.id}`}
+              className="btn btn-secondary btn-sm"
+            >
+              Write a Review
+            </Link>
+          </div>
+
+          {productReviews.length === 0 ? (
+            <div className="pdp-review-empty">
+              <h3>No reviews yet for this piece</h3>
+              <p>
+                Have you draped or purchased this handcrafted shawl? Share your thoughts on its warmth, weight, and artisan embroidery.
+              </p>
+              <Link to={`/review/${product.id}`} className="btn btn-primary btn-sm">
+                <span>Write the First Review</span>
+              </Link>
+            </div>
+          ) : (
+            <div className="pdp-reviews-grid">
+              {productReviews.map((rev) => (
+                <div key={rev.id} className="pdp-review-card">
+                  <div>
+                    <div className="pdp-review-head">
+                      <div className="pdp-stars-row" style={{ fontSize: '0.92rem' }}>
+                        {[...Array(Number(rev.rating) || 5)].map((_, i) => (
+                          <StarIcon key={i} size={13} filled={true} />
+                        ))}
+                      </div>
+                      <span className="pdp-verified-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                        <CheckIcon size={11} />
+                        <span>Verified Patron</span>
+                      </span>
+                    </div>
+
+                    <p className="pdp-review-body">
+                      "{rev.comment}"
+                    </p>
+                  </div>
+
+                  <div className="pdp-review-foot">
+                    <span className="pdp-patron-name">{rev.name}</span>
+                    <span className="pdp-patron-loc">{rev.city || 'Verified Patron'}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
 
         {/* Related Pieces from Boutique */}
         {relatedProducts.length > 0 && (

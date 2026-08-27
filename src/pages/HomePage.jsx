@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
 import { useStorefrontData } from '../context/StorefrontDataContext';
-import { PhoneIcon, LocationIcon, InstagramIcon, TikTokIcon } from '../components/Icons';
+import { PhoneIcon, LocationIcon, InstagramIcon, TikTokIcon, StarIcon } from '../components/Icons';
 
 export default function HomePage() {
   const { products, materials, testimonials, faqs, settings, siteContent, whatsappLink } = useStorefrontData();
@@ -256,7 +256,11 @@ export default function HomePage() {
             <div className="testimonials-grid">
               {testimonials.map((t, idx) => (
                 <div className="testimonial-card" key={t.id || idx}>
-                  <div className="t-rating">{'★'.repeat(t.rating || 5)}</div>
+                  <div className="t-rating" style={{ display: 'flex', gap: '3px', color: 'var(--gold)' }}>
+                    {[...Array(Number(t.rating) || 5)].map((_, i) => (
+                      <StarIcon key={i} size={14} filled={true} />
+                    ))}
+                  </div>
                   <p className="t-comment">&ldquo;{t.comment}&rdquo;</p>
                   <div className="t-author">
                     <strong>{t.name}</strong>

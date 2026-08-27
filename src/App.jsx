@@ -15,6 +15,7 @@ import CraftPage from './pages/CraftPage';
 import ContactPage from './pages/ContactPage';
 import GuidesPage from './pages/GuidesPage';
 import GuideDetailPage from './pages/GuideDetailPage';
+import SubmitReviewPage from './pages/SubmitReviewPage';
 
 export default function App() {
   // Show splash only if not already seen this session
@@ -44,6 +45,9 @@ export default function App() {
             <Route path="/collection" element={<CollectionPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
             <Route path="/collection/:id" element={<ProductDetailPage />} />
+            <Route path="/review/:id" element={<SubmitReviewPage />} />
+            <Route path="/reviews/:id" element={<SubmitReviewPage />} />
+            <Route path="/review" element={<SubmitReviewPage />} />
             <Route path="/craft" element={<CraftPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/guides" element={<GuidesPage />} />

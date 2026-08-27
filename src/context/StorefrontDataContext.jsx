@@ -136,7 +136,9 @@ export function StorefrontDataProvider({ children }) {
           city: t.city,
           shawl: t.shawl,
           comment: t.comment,
-          rating: t.rating || 5
+          rating: t.rating || 5,
+          productId: t.product_id || null,
+          createdAt: t.created_at || null
         })));
       }
 
@@ -185,6 +187,31 @@ export function StorefrontDataProvider({ children }) {
     }
   };
 
+  const submitReview = async (reviewData) => {
+    try {
+      const payload = {
+        id: 'rev-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+        name: reviewData.name.trim(),
+        city: reviewData.city?.trim() || 'Verified Patron',
+        shawl: reviewData.shawl?.trim() || 'Handcrafted Shawl',
+        comment: reviewData.comment.trim(),
+        rating: Number(reviewData.rating) || 5,
+        product_id: reviewData.productId || null,
+        created_at: new Date().toISOString()
+      };
+
+      const { error } = await supabase.from('testimonials').insert([payload]);
+      if (error) throw error;
+
+      // Optimistically update local state & refresh
+      await fetchLiveSupabaseData();
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to submit review to Supabase', e);
+      return { success: false, error: e.message || 'Failed to submit review' };
+    }
+  };
+
   return (
     <StorefrontDataContext.Provider
       value={{
@@ -198,6 +225,7 @@ export function StorefrontDataProvider({ children }) {
         siteContent: siteContent || DEFAULT_SITE_CONTENT,
         whatsappLink,
         submitInquiry,
+        submitReview,
         refreshData: fetchLiveSupabaseData
       }}
     >

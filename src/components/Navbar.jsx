@@ -51,11 +51,12 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location]);
 
-  const isProductPage = location.pathname.startsWith('/product/') || 
-                        (location.pathname.startsWith('/collection/') && location.pathname !== '/collection');
+  const isProductOrReviewPage = location.pathname.startsWith('/product/') || 
+                                (location.pathname.startsWith('/collection/') && location.pathname !== '/collection') ||
+                                location.pathname.startsWith('/review');
 
-  // If on product detail/view page, completely remove header
-  if (isProductPage) {
+  // If on product detail/view or review page, completely remove header
+  if (isProductOrReviewPage) {
     return null;
   }
 
