@@ -55,7 +55,6 @@ export default function Navbar() {
                                 (location.pathname.startsWith('/collection/') && location.pathname !== '/collection') ||
                                 location.pathname.startsWith('/review');
 
-  // If on product detail/view or review page, completely remove header
   if (isProductOrReviewPage) {
     return null;
   }

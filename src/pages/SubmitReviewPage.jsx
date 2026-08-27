@@ -17,7 +17,6 @@ export default function SubmitReviewPage() {
   const navigate = useNavigate();
   const { products, submitReview } = useStorefrontData();
 
-  // Find product by id
   const product = useMemo(() => {
     if (!products || products.length === 0) return null;
     return products.find((p) => String(p.id) === String(id)) || null;
@@ -100,8 +99,6 @@ export default function SubmitReviewPage() {
       </button>
 
       <div className="container" style={{ maxWidth: '680px', margin: '0 auto', paddingTop: '16px' }}>
-        
-        {/* Navigation Breadcrumb */}
         <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link>
           <span>/</span>
@@ -170,7 +167,6 @@ export default function SubmitReviewPage() {
           </div>
         ) : (
           <div className="submit-review-card">
-            {/* Header Banner */}
             <div className="submit-review-hero">
               <div>
                 <span className="eyebrow" style={{ display: 'block', marginBottom: '4px' }}>
@@ -205,7 +201,6 @@ export default function SubmitReviewPage() {
               )}
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="submit-review-form">
               {errorMessage && (
                 <div 
@@ -227,7 +222,6 @@ export default function SubmitReviewPage() {
                 </div>
               )}
 
-              {/* Star Rating Selector */}
               <div className="form-group" style={{ marginBottom: '22px' }}>
                 <label>Overall Rating *</label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
@@ -260,7 +254,6 @@ export default function SubmitReviewPage() {
                 </div>
               </div>
 
-              {/* Name & City */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '18px' }}>
                 <div>
                   <label>Your Name *</label>
@@ -284,7 +277,6 @@ export default function SubmitReviewPage() {
                 </div>
               </div>
 
-              {/* Review Text */}
               <div className="form-group" style={{ marginBottom: '22px' }}>
                 <label>Your Review & Experience *</label>
                 <textarea
@@ -297,7 +289,6 @@ export default function SubmitReviewPage() {
                 />
               </div>
 
-              {/* Quality Guarantee Note */}
               <div 
                 style={{
                   display: 'flex',
@@ -318,7 +309,6 @@ export default function SubmitReviewPage() {
                 </p>
               </div>
 
-              {/* Actions */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>
                 {product ? (
                   <Link to={`/product/${product.id}`} className="btn btn-secondary btn-sm">

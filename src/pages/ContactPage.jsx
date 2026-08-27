@@ -291,7 +291,6 @@ export default function ContactPage() {
               </form>
             </div>
 
-            {/* Right Column: Atelier Passport */}
             <div className="atelier-passport-panel">
               <div className="passport-inner">
                 <div className="passport-header">

@@ -18,7 +18,6 @@ import GuideDetailPage from './pages/GuideDetailPage';
 import SubmitReviewPage from './pages/SubmitReviewPage';
 
 export default function App() {
-  // Show splash only if not already seen this session
   const [splashDone, setSplashDone] = useState(
     () => sessionStorage.getItem('splashShown') === 'true'
   );
@@ -30,7 +29,6 @@ export default function App() {
 
   return (
     <StorefrontDataProvider>
-      {/* Splash screen renders on top while app loads in background */}
       {!splashDone && <SplashScreen onDone={handleSplashDone} />}
 
       <BrowserRouter>

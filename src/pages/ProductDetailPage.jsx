@@ -28,7 +28,6 @@ export default function ProductDetailPage() {
     (p.name && p.name.toLowerCase().trim() === decodedId.toLowerCase())
   );
 
-  // If products are loaded and product not found, or redirect fallback
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -66,7 +65,6 @@ export default function ProductDetailPage() {
     .filter((p) => p.id !== product.id && (p.category === product.category || p.featured))
     .slice(0, 3);
 
-  // Reviews associated with this product
   const productReviews = (testimonials || []).filter((t) => {
     if (!t) return false;
     if (t.productId && String(t.productId) === String(product.id)) return true;
@@ -100,7 +98,6 @@ export default function ProductDetailPage() {
 
       <div className="wrap product-main-container">
         <div className="product-view-grid">
-          {/* Left Column: Product Gallery */}
           <div className="product-gallery-col">
             <div className="product-main-viewport">
               {activeImage ? (
@@ -124,7 +121,6 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Thumbnail Strip for up to 5 pictures */}
             {imageList.length > 1 && (
               <div className="product-thumbs-strip">
                 {imageList.map((imgUrl, idx) => (
@@ -142,7 +138,6 @@ export default function ProductDetailPage() {
             )}
           </div>
 
-          {/* Right Column: Product Information & Specifications */}
           <div className="product-info-col">
             <div className="product-header-block">
               {product.tag && <div className="product-eyebrow-tag">{product.tag}</div>}
@@ -160,7 +155,6 @@ export default function ProductDetailPage() {
               <p className="product-summary-text">{product.desc}</p>
             )}
 
-            {/* CTAs: WhatsApp Order & Direct Phone Inquiry */}
             <div className="product-actions-block">
               <a
                 href={whatsappUrl}
@@ -185,7 +179,6 @@ export default function ProductDetailPage() {
               </a>
             </div>
 
-            {/* Product Specifications Table (Alibaba / Clean E-commerce style) */}
             <div className="product-specs-section">
               <h3 className="specs-section-title">Product Specifications</h3>
               <table className="product-specs-table">
@@ -230,7 +223,6 @@ export default function ProductDetailPage() {
               </table>
             </div>
 
-            {/* Quality Guarantees */}
             <div className="product-guarantees-grid">
               <div className="guarantee-item">
                 <div>
@@ -249,7 +241,6 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Luxury Customer Reviews & Ratings Section */}
         <section className="pdp-reviews-wrap">
           <div className="pdp-reviews-topbar">
             <div className="pdp-reviews-title-group">
@@ -320,7 +311,6 @@ export default function ProductDetailPage() {
           )}
         </section>
 
-        {/* Related Pieces from Boutique */}
         {relatedProducts.length > 0 && (
           <div className="product-related-section">
             <div className="section-head">

@@ -203,7 +203,6 @@ export function StorefrontDataProvider({ children }) {
       const { error } = await supabase.from('testimonials').insert([payload]);
       if (error) throw error;
 
-      // Optimistically update local state & refresh
       await fetchLiveSupabaseData();
       return { success: true };
     } catch (e) {

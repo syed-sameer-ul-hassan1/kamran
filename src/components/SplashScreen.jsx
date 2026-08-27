@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 
 export default function SplashScreen({ onDone }) {
-  const [phase, setPhase] = useState('in'); // 'in' | 'hold' | 'out' | 'done'
+  const [phase, setPhase] = useState('in');
 
   useEffect(() => {
-    // Fade in: 0.6s
     const holdTimer = setTimeout(() => setPhase('hold'), 600);
-    // Hold until 3.4s mark, then fade out
     const outTimer  = setTimeout(() => setPhase('out'),  3400);
-    // Remove after fade-out completes
     const doneTimer = setTimeout(() => { setPhase('done'); onDone && onDone(); }, 4000);
 
     return () => {
@@ -46,7 +43,6 @@ export default function SplashScreen({ onDone }) {
         overflow: 'hidden',
       }}
     >
-      {/* Boteh / Paisley background — same as Hero section */}
       <svg
         viewBox="0 0 400 400"
         preserveAspectRatio="xMidYMid slice"
@@ -75,7 +71,6 @@ export default function SplashScreen({ onDone }) {
         <use href="#boteh" x="330" y="290" width="60" height="90" />
       </svg>
 
-      {/* Logo */}
       <img
         src="/logo-dark.svg"
         alt="Kamran Shawls"

@@ -68,19 +68,16 @@ html, body {
   overflow-x: hidden;
   width: 100%;
 
-  /* Disable text selection across the site */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 
-  /* Disable double-tap and pinch zoom gestures */
   touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Allow text selection ONLY in form inputs / textareas so clients can enter details */
 input, textarea, select, [contenteditable="true"] {
   -webkit-user-select: text !important;
   -moz-user-select: text !important;
@@ -88,7 +85,6 @@ input, textarea, select, [contenteditable="true"] {
   user-select: text !important;
 }
 
-/* Prevent image dragging, touch callouts, and click highlight blush on interactive elements */
 img, svg, a, button, [role="button"], input, select, textarea {
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
@@ -526,8 +522,8 @@ header.site-nav.light-page-nav .burger {
   color: var(--text-light);
   display: flex;
   flex-direction: column;
-  overflow: hidden;           /* NO scroll — must fit exactly */
-  height: 100dvh;             /* dynamic viewport height — respects browser chrome */
+  overflow: hidden;           
+  height: 100dvh;             
   max-height: 100dvh;
   animation: mobileNavFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -589,7 +585,7 @@ header.site-nav.light-page-nav .burger {
   flex-direction: column;
   gap: 0;
   flex: 1;
-  min-height: 0;              /* critical: allows flex child to shrink */
+  min-height: 0;              
   justify-content: space-between;
   overflow: hidden;
 }
@@ -3631,10 +3627,6 @@ footer.luxury-footer {
   color: var(--text-light);
 }
 
-/* ==========================================================================
-   Comprehensive Mobile Viewport Alignment & Responsive Overhauls (< 768px)
-   ========================================================================== */
-
 @media (max-width: 767px) {
   html, body, #root {
     width: 100% !important;
@@ -3648,7 +3640,6 @@ footer.luxury-footer {
     box-sizing: border-box !important;
   }
 
-  /* Nav Header & Brand Alignment */
   .nav-inner {
     padding: 10px 16px !important;
     align-items: center;
@@ -3674,7 +3665,6 @@ footer.luxury-footer {
     justify-content: center;
   }
 
-  /* Hero & Page Hero Centering / Left Alignment */
   .hero-inner, .page-hero-inner {
     padding-top: 86px !important;
     padding-bottom: 40px !important;
@@ -3712,7 +3702,6 @@ footer.luxury-footer {
     font-size: 0.88rem !important;
   }
 
-  /* Flush Horizontal Swiper Alignment */
   .home-collection-grid,
   .craft-steps-grid,
   .testimonials-grid,
@@ -3729,7 +3718,6 @@ footer.luxury-footer {
     box-sizing: border-box;
   }
 
-  /* Filter Pills on Mobile across Home & Collection Pages */
   .filter-pills {
     display: flex !important;
     flex-direction: row !important;
@@ -3782,7 +3770,6 @@ footer.luxury-footer {
     box-shadow: 0 4px 12px var(--oxblood-glow) !important;
   }
 
-  /* Catalogue Controls on Collection Page */
   .controls-bar {
     display: flex !important;
     flex-direction: column !important;
@@ -3849,7 +3836,6 @@ footer.luxury-footer {
     background-size: 14px 14px !important;
   }
 
-  /* Sizing Cards & Comparison Tables */
   .sizing-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
@@ -3873,7 +3859,6 @@ footer.luxury-footer {
     min-width: 580px !important;
   }
 
-  /* Contact & Consultation Suite on Mobile */
   .atelier-grid {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
@@ -3927,7 +3912,6 @@ footer.luxury-footer {
     justify-content: center !important;
   }
 
-  /* Footer Alignment */
   .footer-main-grid {
     grid-template-columns: 1fr !important;
     gap: 28px !important;
@@ -3956,10 +3940,6 @@ footer.luxury-footer {
     gap: 10px !important;
   }
 }
-
-/* ==========================================================================
-   Product Detail Page (Clean View: Sticky Squarish Back Button Only)
-   ========================================================================== */
 
 .product-square-back-btn {
   position: sticky;
@@ -4033,7 +4013,6 @@ footer.luxury-footer {
   }
 }
 
-/* Product Gallery (Left Column) */
 .product-gallery-col {
   display: flex;
   flex-direction: column;
@@ -4127,7 +4106,6 @@ footer.luxury-footer {
   border-color: var(--gold);
 }
 
-/* Product Info & Specs (Right Column) */
 .product-info-col {
   display: flex;
   flex-direction: column;
@@ -4199,7 +4177,6 @@ footer.luxury-footer {
   margin: 0;
 }
 
-/* CTAs */
 .product-actions-block {
   display: flex;
   flex-direction: column;
@@ -4232,7 +4209,6 @@ footer.luxury-footer {
   font-size: 0.92rem;
 }
 
-/* Specifications Table (Alibaba Clean Spec Grid) */
 .product-specs-section {
   background: var(--cream);
   border: 1px solid var(--line);
@@ -4277,7 +4253,6 @@ footer.luxury-footer {
   font-weight: 500;
 }
 
-/* Guarantees */
 .product-guarantees-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -4313,7 +4288,6 @@ footer.luxury-footer {
   margin-top: 2px;
 }
 
-/* Related Pieces */
 .product-related-section {
   margin-top: 60px;
   padding-top: 40px;
@@ -4321,7 +4295,7 @@ footer.luxury-footer {
 }
 
 @media (max-width: 767px) {
-  /* Product Detail Page Mobile Alignment */
+  
   .product-square-back-btn {
     top: 12px !important;
     left: 12px !important;
@@ -4434,9 +4408,6 @@ footer.luxury-footer {
   }
 }
 
-/* ==========================================================================
-   Luxury Customer Reviews & Experiences Section (Product Detail Page)
-   ========================================================================== */
 .pdp-reviews-wrap {
   margin-top: 56px;
   padding: 36px 32px;
@@ -4601,9 +4572,6 @@ footer.luxury-footer {
   }
 }
 
-/* ==========================================================================
-   Submit Review Page (Luxury Light / Cream Design)
-   ========================================================================== */
 .submit-review-card {
   background: var(--cream-pure);
   border: 1px solid rgba(184, 147, 74, 0.25);
@@ -4690,9 +4658,6 @@ footer.luxury-footer {
   transform: scale(1.18);
 }
 
-/* ==========================================================================
-   Mobile Ergonomics: Button Height, Width & Font Weight (Accurate Screen Fit)
-   ========================================================================== */
 @media (max-width: 640px) {
   .btn {
     min-height: 46px;
